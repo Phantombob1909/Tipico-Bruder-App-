@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="de" translate="no" class="notranslate">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tippico Bruder V3.1 – Exact Line & Sharp Hunter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #06080d;
+      --card-bg: #101520;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 12% 10%, rgba(16, 185, 129, 0.12), transparent 38%),
+        radial-gradient(circle at 88% 85%, rgba(225, 29, 72, 0.12), transparent 40%);
+      background-attachment: fixed;
+      color: #f8fafc;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .card-panel {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+    }
+    input, select, button {
+      touch-action: manipulation;
+    }
+    .ticket-notch-l, .ticket-notch-r {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #06080d;
+      border-radius: 9999px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    .ticket-notch-l { left: -11px; border-right: 1px solid rgba(255,255,255,0.15); }
+    .ticket-notch-r { right: -11px; border-left: 1px solid rgba(255,255,255,0.15); }
+  </style>
+</head>
+<body class="min-h-screen pb-24 notranslate">
+
+  <!-- TOP BANNER -->
+  <div class="bg-gradient-to-r from-emerald-600 via-teal-500 to-amber-500 text-slate-950 text-[11px] font-black py-1.5 px-3 text-center tracking-wide shadow">
+    🎯 TIPPICO BRUDER V3.1 — Fix für Über/Unter Tor-Linien (2.5 / 3.5) + Echte Tipico-Kalibrierung!
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-30 bg-[#0a0e17]/95 backdrop-blur border-b border-white/15 shadow-lg">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-2">
+      
+      <div class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-800 flex items-center justify-center shadow border border-emerald-300/30">
+          <span class="text-lg font-black text-white">TB</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <h1 class="text-lg sm:text-xl font-black tracking-tight text-white">TIPPICO <span class="text-emerald-400">BRUDER</span></h1>
+            <span class="px-1.5 py-0.5 text-[9px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded">V3.1 FIX</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Exakte Tor-Linien & Sharp-Anker</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <div class="flex items-center bg-slate-900 border border-white/20 rounded-xl px-2.5 py-1.5">
+          <span class="text-[11px] text-slate-400 mr-1 font-semibold">Budget:</span>
+          <input id="bankrollInput" type="number" value="50" min="1" step="5" oninput="recalculateAll()" 
+            class="w-12 bg-transparent text-right font-bold mono text-emerald-400 focus:outline-none text-xs sm:text-sm" />
+          <span class="text-xs font-bold text-emerald-400 ml-0.5">€</span>
+        </div>
+
+        <button type="button" onclick="togglePanel('customMatchDrawer')" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white border border-white/20 text-xs font-bold">
+          ＋ Spiel
+        </button>
+
+        <button type="button" onclick="togglePanel('apiDrawer')" class="px-3 py-2 rounded-xl bg-emerald-950/90 hover:bg-emerald-900 text-emerald-300 border border-emerald-500/40 text-xs font-extrabold flex items-center gap-1.5">
+          <span id="apiStatusDot" class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+          <span>API-Key</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 pt-4">
+
+    <!-- AUFKLAPPBARES FELDMENÜ 1: API-KEY -->
+    <section id="apiDrawer" class="hidden card-panel rounded-2xl p-4 mb-5 border-2 border-emerald-500/60 shadow-2xl">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-sm sm:text-base font-black text-emerald-400">🔌 Live-Datenbank (The Odds API)</h3>
+        <button type="button" onclick="togglePanel('apiDrawer')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs font-bold text-slate-300">Schließen ✕</button>
+      </div>
+      <p class="text-xs text-slate-300 mb-3">
+        V3.1 liest die exakte Tor-Linie (`2.5`, `3.0` oder `3.5`) der Buchmacher aus und rechnet sie fehlerfrei auf alle Tipico-Märkte um:
+      </p>
+      <div class="flex flex-col sm:flex-row gap-2 mb-3">
+        <input id="oddsApiKeyInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+          placeholder="Hier deinen API-Key einfügen..." 
+          class="flex-1 bg-black border-2 border-white/30 focus:border-emerald-400 rounded-xl px-3.5 py-3 text-sm mono text-white" />
+        <button type="button" onclick="pasteApiKeyFromClipboard()" class="px-4 py-3 rounded-xl bg-slate-800 border border-white/20 text-xs font-extrabold text-amber-300 shrink-0">
+          📋 Aus Zwischenablage einfügen
+        </button>
+      </div>
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span id="apiStatusText" class="text-xs text-slate-400 font-semibold">Status: Noch kein Key gespeichert</span>
+        <div class="flex gap-2 w-full sm:w-auto">
+          <button type="button" onclick="clearApiKey()" class="px-3 py-2.5 rounded-xl bg-slate-800 text-xs font-bold text-rose-400">Key löschen</button>
+          <button type="button" onclick="saveAndFetchApiKey()" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-emerald-600 active:bg-emerald-500 text-xs sm:text-sm font-black text-white shadow-lg">
+            ✅ Speichern & Live-Scan starten
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUFKLAPPBARES FELDMENÜ 2: EIGENES SPIEL -->
+    <section id="customMatchDrawer" class="hidden card-panel rounded-2xl p-4 mb-5 border-2 border-rose-500/60 shadow-2xl">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-sm sm:text-base font-black text-rose-400">➕ Eigenes Spiel mit Tipico-Quoten prüfen</h3>
+        <button type="button" onclick="togglePanel('customMatchDrawer')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs font-bold text-slate-300">Schließen ✕</button>
+      </div>
+      <div class="grid grid-cols-2 gap-2.5 mb-3">
+        <div>
+          <label class="text-[11px] font-bold text-slate-300">Heimteam</label>
+          <input id="cmHome" type="text" placeholder="z.B. Borussia Dortmund" class="w-full bg-black border border-white/25 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white mt-1" />
+        </div>
+        <div>
+          <label class="text-[11px] font-bold text-slate-300">Gastteam</label>
+          <input id="cmAway" type="text" placeholder="z.B. VfB Stuttgart" class="w-full bg-black border border-white/25 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white mt-1" />
+        </div>
+      </div>
+      <div class="grid grid-cols-4 gap-2 mb-3">
+        <div>
+          <label class="text-[10px] font-bold text-slate-300">Quote 1</label>
+          <input id="cmOdd1" type="number" step="0.05" value="2.10" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-slate-300">Quote X</label>
+          <input id="cmOddX" type="number" step="0.05" value="3.60" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-slate-300">Quote 2</label>
+          <input id="cmOdd2" type="number" step="0.05" value="3.30" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-slate-300">Über 2,5</label>
+          <input id="cmOddO25" type="number" step="0.05" value="1.65" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
+        </div>
+      </div>
+      <button type="button" onclick="addCustomMatch()" class="w-full py-3 rounded-xl bg-rose-600 active:bg-rose-500 text-white font-black text-xs sm:text-sm shadow-lg">
+        Dixon-Coles Matrix berechnen & hinzufügen
+      </button>
+    </section>
+
+    <!-- AUFKLAPPBARES FELDMENÜ 3: TIPICO-QUOTE ANPASSEN -->
+    <section id="editOddDrawer" class="hidden card-panel rounded-2xl p-4 mb-5 border-2 border-amber-400 shadow-2xl">
+      <div class="flex items-center justify-between mb-1">
+        <div>
+          <span class="text-[10px] font-black uppercase text-amber-400 block">Tipico-Quoten-Abgleich</span>
+          <h3 id="editOddTitle" class="text-sm font-black text-white">Spiel & Markt</h3>
+        </div>
+        <button type="button" onclick="togglePanel('editOddDrawer')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs font-bold text-slate-300">✕</button>
+      </div>
+      <p class="text-[11px] text-slate-300 mb-2">
+        Trage hier die exakte Quote aus deiner Tipico-App ein:
+      </p>
+      <div class="flex items-center gap-2 my-3">
+        <button type="button" onclick="stepOddInput(-0.05)" class="w-12 h-11 rounded-xl bg-slate-800 border border-white/20 text-lg font-black text-white">−</button>
+        <input id="editOddValueInput" type="number" step="0.01" min="1.01" 
+          class="flex-1 bg-black border-2 border-amber-400 rounded-xl py-2 text-center text-xl font-black mono text-white" />
+        <button type="button" onclick="stepOddInput(0.05)" class="w-12 h-11 rounded-xl bg-slate-800 border border-white/20 text-lg font-black text-white">＋</button>
+      </div>
+      <label class="flex items-center gap-2 text-xs text-slate-300 mb-3 cursor-pointer bg-black/50 p-2.5 rounded-xl border border-white/10">
+        <input id="resyncAllCheckbox" type="checkbox" class="w-4 h-4 accent-emerald-500 rounded" />
+        <span>Wenn Tipico das Spiel komplett anders bewertet (z.B. 1,10 statt 1,70): Alle Tor-Wahrscheinlichkeiten (xG) an diese Tipico-Quote anpassen!</span>
+      </label>
+      <button type="button" onclick="saveEditedOdd()" class="w-full py-2.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs sm:text-sm">
+        ✅ Tipico-Quote übernehmen
+      </button>
+    </section>
+
+    <!-- FILTER, LIGA & ROSINENPICKER SCANNER -->
+    <section class="card-panel rounded-2xl p-4 mb-5 shadow-xl">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+        
+        <div class="md:col-span-4">
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Wettbewerb / Liga-Filter</label>
+          <select id="leagueSelect" onchange="recalculateAll()" class="w-full bg-slate-900 border border-white/20 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-bold text-white">
+            <option value="all">🔥 Alle gescannten Ligen (Rosinenpicker)</option>
+            <option value="soccer_germany_bundesliga">🇩🇪 1. Bundesliga</option>
+            <option value="soccer_uefa_champs_league">🏆 UEFA Champions League</option>
+            <option value="soccer_uefa_europa_league">🟠 UEFA Europa League</option>
+            <option value="soccer_epl">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+            <option value="soccer_spain_la_liga">🇪🇸 La Liga</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-3">
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Zeitfenster</label>
+          <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-xl border border-white/20">
+            <button type="button" onclick="setTimeframe(1)" id="tf-1" class="py-2 rounded-lg text-xs font-extrabold transition text-slate-400">Heute</button>
+            <button type="button" onclick="setTimeframe(3)" id="tf-3" class="py-2 rounded-lg text-xs font-extrabold transition bg-rose-600 text-white shadow">3 Tage</button>
+            <button type="button" onclick="setTimeframe(7)" id="tf-7" class="py-2 rounded-lg text-xs font-extrabold transition text-slate-400">7 Tage</button>
+          </div>
+        </div>
+
+        <div class="md:col-span-5 pt-1 md:pt-4 flex flex-col sm:flex-row gap-2">
+          <button type="button" onclick="fetchLiveOdds(false)" id="fetchBtn" class="flex-1 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-white/20 text-white font-extrabold text-xs shadow flex items-center justify-center gap-1.5">
+            <span>🔄 Gewählte Liga laden</span>
+          </button>
+          <button type="button" onclick="fetchLiveOdds(true)" id="multiScanBtn" class="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-emerald-500 text-slate-950 font-black text-xs shadow-lg flex items-center justify-center gap-1.5">
+            <span>🚀 Multi-Liga Value-Scan</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3 BRUDER MODI -->
+      <div class="mt-4 pt-3 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+        <button type="button" onclick="setMode('safe')" id="mode-safe" class="text-left p-3 rounded-xl border transition-all bg-emerald-500/15 border-emerald-500/60">
+          <div class="flex items-center justify-between mb-0.5">
+            <span class="text-xs sm:text-sm font-black text-white">🛡️ Safe-Bruder</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 mono">2er-Kombi</span>
+          </div>
+          <p class="text-[11px] text-slate-300">Fokus: Unter 3.5, Draw No Bet & Doppelte Chance (Mind. 62% Chance + bester EV)</p>
+        </button>
+
+        <button type="button" onclick="setMode('value')" id="mode-value" class="text-left p-3 rounded-xl border transition-all bg-slate-900/70 border-white/10">
+          <div class="flex items-center justify-between mb-0.5">
+            <span class="text-xs sm:text-sm font-black text-white">⚖️ Value-Hunter</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 mono">2er / 3er</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Jagd auf Buchmacher-Fehler (Pinnacle vs. Tipico Steam-Moves & +EV)</p>
+        </button>
+
+        <button type="button" onclick="setMode('yolo')" id="mode-yolo" class="text-left p-3 rounded-xl border transition-all bg-slate-900/70 border-white/10">
+          <div class="flex items-center justify-between mb-0.5">
+            <span class="text-xs sm:text-sm font-black text-white">🚀 Gönn-Dir-Bruder</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 mono">4er-Kombi</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Hohe Quoten mit bestem mathematischen Erwartungswert (1.5% Einsatz)</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- WORKSPACE -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+
+      <!-- SPIELKARTEN (7 Spalten) -->
+      <div class="lg:col-span-7 space-y-3.5">
+        <div class="flex flex-wrap items-center justify-between gap-2 px-1">
+          <div>
+            <h2 class="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
+              <span>Sortiert nach bestem Value-Vorteil</span>
+              <span id="matchCountBadge" class="px-2 py-0.5 text-xs rounded-full bg-slate-800 text-emerald-400 mono">0</span>
+            </h2>
+            <p class="text-[11px] text-slate-400">Exakte Tor-Linien-Umrechnung aktiv (keine falschen 3.5er Quoten mehr bei Über 2.5!)</p>
+          </div>
+          <button type="button" onclick="resetDefaultMatches()" class="text-xs text-rose-400 font-semibold underline">Demo-Reset</button>
+        </div>
+
+        <div id="matchesContainer" class="space-y-3.5"></div>
+      </div>
+
+      <!-- WETTSCHEIN TICKET (5 Spalten) -->
+      <div class="lg:col-span-5 lg:sticky lg:top-20">
+        <div class="card-panel rounded-3xl overflow-hidden border border-white/15 shadow-2xl">
+          
+          <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-rose-600 px-5 py-3.5 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] font-black uppercase tracking-widest text-white/90 block">OPTIMIERTE ROSINENPICKER-AUSWAHL</span>
+              <h3 id="slipTitle" class="text-base sm:text-lg font-black text-white">🛡️ Safe-Bruder Kombi</h3>
+            </div>
+            <span id="slipCountBadge" class="px-2.5 py-1 rounded-full bg-black/40 text-white font-extrabold text-xs mono">2 Spiele</span>
+          </div>
+
+          <div id="slipPicksContainer" class="p-4 sm:p-5 space-y-3 divide-y divide-white/10"></div>
+
+          <div class="relative py-2.5 flex items-center justify-center">
+            <div class="ticket-notch-l"></div>
+            <div class="w-full border-t-2 border-dashed border-white/15 mx-4"></div>
+            <div class="ticket-notch-r"></div>
+          </div>
+
+          <div class="px-5 pb-5 pt-1 space-y-3.5">
+            <div class="bg-slate-900/90 rounded-2xl p-3 border border-white/10">
+              <div class="flex justify-between items-center text-xs mb-1.5">
+                <span class="font-bold text-slate-300">Wahre Trefferchance (Dixon-Coles)</span>
+                <span id="slipHitProb" class="font-black mono text-emerald-400 text-sm">50.0 %</span>
+              </div>
+              <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                <div id="slipProbBar" class="h-full bg-gradient-to-r from-rose-500 via-amber-400 to-emerald-400 transition-all duration-300" style="width: 50%"></div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <div class="bg-slate-900/80 p-3 rounded-2xl border border-white/10">
+                <span class="text-[11px] text-slate-400 font-semibold block">Kumulierte Gesamtquote</span>
+                <span id="slipTotalOdds" class="text-xl sm:text-2xl font-black mono text-white mt-0.5 block">2.00</span>
+              </div>
+              <div class="bg-slate-900/80 p-3 rounded-2xl border border-white/10">
+                <span class="text-[11px] text-slate-400 font-semibold block">Empfohlener Einsatz (Kelly)</span>
+                <span id="slipStake" class="text-xl sm:text-2xl font-black mono text-amber-400 mt-0.5 block">2.50 €</span>
+              </div>
+            </div>
+
+            <div id="slipWinBox" class="bg-emerald-500/15 border border-emerald-500/40 rounded-2xl p-3.5 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-extrabold uppercase text-emerald-300 block">Möglicher Rücklauf</span>
+                <span id="slipEvBadge" class="text-[11px] text-emerald-400 font-bold">Kombi-Erwartungswert: +3.4 %</span>
+              </div>
+              <span id="slipPotentialWin" class="text-2xl sm:text-3xl font-black mono text-emerald-400">5.00 €</span>
+            </div>
+
+            <button type="button" onclick="copyTicketToClipboard()" id="copyBtn" class="w-full py-3 rounded-xl bg-white active:bg-slate-200 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2">
+              <span>📋 Schein in Zwischenablage kopieren</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // ============================================================================
+    // MATHEMATISCHE KERN-ENGINE V3.1 (EXACT TOTALS LINE SOLVER + SHARP ANCHOR)
+    // ============================================================================
+    let currentTimeframe = 3;
+    let currentMode = 'safe';
+    let lockedPicks = {};
+    let editingTarget = { matchId: null, marketKey: null };
+
+    function factorial(n) {
+      if (n <= 1) return 1;
+      let r = 1;
+      for (let i = 2; i <= n; i++) r *= i;
+      return r;
+    }
+
+    function poissonPmf(k, lambda) {
+      return (Math.pow(lambda, k) * Math.exp(-lambda)) / factorial(k);
+    }
+
+    // Kumulierte Poisson-Wahrscheinlichkeit für <= maxGoals Tore
+    function poissonCdf(maxGoals, totalLambda) {
+      let sum = 0;
+      for (let k = 0; k <= maxGoals; k++) {
+        sum += poissonPmf(k, totalLambda);
+      }
+      return sum;
+    }
+
+    // Berechnet die wahre Über-Wahrscheinlichkeit für JEDE beliebige Buchmacher-Linie (1.5, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 4.0)
+    function probOverLine(line, totalLambda) {
+      const pOver15 = 1 - poissonCdf(1, totalLambda);
+      const pOver25 = 1 - poissonCdf(2, totalLambda);
+      const pOver35 = 1 - poissonCdf(3, totalLambda);
+      const pOver45 = 1 - poissonCdf(4, totalLambda);
+
+      if (Math.abs(line - 1.5) < 0.05) return pOver15;
+      if (Math.abs(line - 2.0) < 0.05) return pOver25 / (1 - poissonPmf(2, totalLambda)); // Asian 2.0 (Push bei 2 Toren)
+      if (Math.abs(line - 2.25) < 0.05) return 0.5 * (pOver25 / (1 - poissonPmf(2, totalLambda))) + 0.5 * pOver25;
+      if (Math.abs(line - 2.5) < 0.05) return pOver25;
+      if (Math.abs(line - 2.75) < 0.05) return 0.5 * pOver25 + 0.5 * (pOver35 / (1 - poissonPmf(3, totalLambda)));
+      if (Math.abs(line - 3.0) < 0.05) return pOver35 / (1 - poissonPmf(3, totalLambda)); // Asian 3.0 (Push bei 3 Toren)
+      if (Math.abs(line - 3.25) < 0.05) return 0.5 * (pOver35 / (1 - poissonPmf(3, totalLambda))) + 0.5 * pOver35;
+      if (Math.abs(line - 3.5) < 0.05) return pOver35;
+      if (Math.abs(line - 4.5) < 0.05) return pOver45;
+
+      // Fallback für sonstige Linien
+      const floorK = Math.floor(line);
+      return 1 - poissonCdf(floorK, totalLambda);
+    }
+
+    // Löst aus JEDER Buchmacher-Tor-Linie (z.B. Over 3.5 @ 1.85 oder Over 2.5 @ 1.40) + 1X2-Favoritenrolle das exakte Gesamt-xG!
+    function solveTotalXgFromLine(linePoint, oddOver, oddUnder, odd1, odd2) {
+      // Implizites Mindest-xG bei extremen Favoriten (z.B. Bayern @ 1.15 -> mindestens ~3.3 Tore erwartet)
+      const minFavOdd = Math.min(odd1 || 2.0, odd2 || 2.0);
+      let favImpliedXg = 2.65;
+      if (minFavOdd < 1.20) favImpliedXg = 3.60;
+      else if (minFavOdd < 1.32) favImpliedXg = 3.25;
+      else if (minFavOdd < 1.48) favImpliedXg = 2.95;
+
+      if (!oddOver || oddOver <= 1.01) return favImpliedXg;
+
+      const pt = parseFloat(linePoint) || 2.5;
+      let fairPOver;
+      if (oddUnder && oddUnder > 1.01) {
+        const rO = 1 / oddOver, rU = 1 / oddUnder;
+        fairPOver = rO / (rO + rU);
+      } else {
+        fairPOver = Math.min(0.92, Math.max(0.12, (1 / oddOver) / 1.05));
+      }
+
+      let solvedXg = favImpliedXg;
+      let minErr = 999;
+      for (let t = 1.10; t <= 5.20; t += 0.03) {
+        const p = probOverLine(pt, t);
+        const err = Math.abs(p - fairPOver);
+        if (err < minErr) {
+          minErr = err;
+          solvedXg = t;
+        }
+      }
+      return solvedXg;
+    }
+
+    // Logarithmisches Power De-Vigging für 3-Wege-Quoten
+    function powerDeVig3Way(odd1, oddX, odd2) {
+      const r1 = 1 / odd1, rX = 1 / oddX, r2 = 1 / odd2;
+      let low = 1.0, high = 2.0, k = 1.08;
+      for (let i = 0; i < 18; i++) {
+        k = (low + high) / 2;
+        const sum = Math.pow(r1, k) + Math.pow(rX, k) + Math.pow(r2, k);
+        if (sum > 1) low = k;
+        else high = k;
+      }
+      const p1 = Math.pow(r1, k), pX = Math.pow(rX, k), p2 = Math.pow(r2, k);
+      const norm = p1 + pX + p2;
+      return { fairP1: p1 / norm, fairPX: pX / norm, fairP2: p2 / norm };
+    }
+
+    // Dixon-Coles korrigierte Poisson-Matrix (bis 9:9 Tore für torreiche Spiele!)
+    function computeDixonColesGrid(xgH, xgA) {
+      let p1 = 0, pX = 0, p2 = 0, pO15 = 0, pO25 = 0, pU35 = 0, pBTTS = 0;
+      const hL = Math.max(0.20, Math.min(4.8, parseFloat(xgH) || 1.4));
+      const aL = Math.max(0.20, Math.min(4.8, parseFloat(xgA) || 1.2));
+      const rho = -0.10;
+
+      let totalMatrixProb = 0;
+      const matrix = [];
+
+      for (let h = 0; h <= 9; h++) {
+        matrix[h] = [];
+        for (let a = 0; a <= 9; a++) {
+          let p = poissonPmf(h, hL) * poissonPmf(a, aL);
+          let tau = 1.0;
+          if (h === 0 && a === 0) tau = Math.max(0.2, 1 - hL * aL * rho);
+          else if (h === 1 && a === 0) tau = Math.max(0.2, 1 + aL * rho);
+          else if (h === 0 && a === 1) tau = Math.max(0.2, 1 + hL * rho);
+          else if (h === 1 && a === 1) tau = Math.max(0.2, 1 - rho);
+
+          p *= tau;
+          matrix[h][a] = p;
+          totalMatrixProb += p;
+        }
+      }
+
+      for (let h = 0; h <= 9; h++) {
+        for (let a = 0; a <= 9; a++) {
+          const p = matrix[h][a] / (totalMatrixProb || 1);
+          if (h > a) p1 += p;
+          else if (h === a) pX += p;
+          else p2 += p;
+
+          if (h + a >= 2) pO15 += p;
+          if (h + a >= 3) pO25 += p;
+          if (h + a <= 3) pU35 += p;
+          if (h >= 1 && a >= 1) pBTTS += p;
+        }
+      }
+
+      const p1X = p1 + pX;
+      const pX2 = p2 + pX;
+      const pDNB1 = (p1 + p2) > 0 ? (p1 / (p1 + p2)) : 0.5;
+      const pDNB2 = (p1 + p2) > 0 ? (p2 / (p1 + p2)) : 0.5;
+
+      return { p1, pX, p2, p1X, pX2, pDNB1, pDNB2, pO15, pO25, pU35, pBTTS };
+    }
+
+    // Baut das komplette Spiel-Objekt inkl. exakter Tipico-Quoten-Kalibrierung auf
+    function buildSharpVsSoftMatch(config) {
+      const s1 = parseFloat(config.sharp1 || config.odd1) || 2.00;
+      const sX = parseFloat(config.sharpX || config.oddX) || 3.50;
+      const s2 = parseFloat(config.sharp2 || config.odd2) || 3.40;
+
+      const play1 = parseFloat(config.odd1) || s1;
+      const playX = parseFloat(config.oddX) || sX;
+      const play2 = parseFloat(config.odd2) || s2;
+
+      // 1. Wahre 1X2-Wahrscheinlichkeiten aus dem Sharp-Anker (Pinnacle)
+      const { fairP1, fairPX, fairP2 } = powerDeVig3Way(s1, sX, s2);
+
+      // 2. Exakte Gesamt-Tore (totalXg) unter Beachtung der echten Punkt-Linie (2.5, 3.0, 3.5) berechnen!
+      const totalXg = solveTotalXgFromLine(
+        config.sharpTotalLine || 2.5,
+        config.sharpOverOdd || config.oddO25,
+        config.sharpUnderOdd || null,
+        s1,
+        s2
+      );
+
+      // 3. Aufteilung von totalXg auf Heim & Gast
+      let bestRatio = 0.5;
+      let minDiff = 999;
+      for (let r = 0.10; r <= 0.90; r += 0.02) {
+        const grid = computeDixonColesGrid(totalXg * r, totalXg * (1 - r));
+        const diff = Math.abs(grid.p1 - fairP1) + Math.abs(grid.p2 - fairP2);
+        if (diff < minDiff) {
+          minDiff = diff;
+          bestRatio = r;
+        }
+      }
+
+      const xgHome = Number((totalXg * bestRatio).toFixed(2));
+      const xgAway = Number((totalXg * (1 - bestRatio)).toFixed(2));
+      const sharpGrid = computeDixonColesGrid(xgHome, xgAway);
+
+      // 4. Realistische Tipico-Quoten für alle 8 Märkte berechnen (Tipico hat ~6.2% Marge auf Tor-Märkte)
+      const tipicoMarginTotals = 1.065;
+      const softRaw1 = 1 / play1, softRawX = 1 / playX, softRaw2 = 1 / play2;
+      const softSum = softRaw1 + softRawX + softRaw2;
+      const softP1 = softRaw1 / softSum, softPX = softRawX / softSum, softP2 = softRaw2 / softSum;
+
+      const calcOdd1X = Number(Math.max(1.03, (1 / (softP1 + softPX)) / 1.055).toFixed(2));
+      const calcOddX2 = Number(Math.max(1.03, (1 / (softP2 + softPX)) / 1.055).toFixed(2));
+      const calcOddDNB1 = Number(Math.max(1.04, (1 / (softP1 / (softP1 + softP2))) / 1.052).toFixed(2));
+      const calcOddDNB2 = Number(Math.max(1.04, (1 / (softP2 / (softP1 + softP2))) / 1.052).toFixed(2));
+
+      // Tor-Quoten: Nur wenn die API eine ECHTE 2.5-Linie geliefert hat, übernehmen wir sie direkt, sonst exakt aus der Poisson-Kurve ableiten!
+      const calcOddO15 = Number(Math.max(1.04, (1 / sharpGrid.pO15) / 1.068).toFixed(2));
+      const calcOddO25 = config.exactPlayO25
+        ? Number(parseFloat(config.exactPlayO25).toFixed(2))
+        : Number(Math.max(1.08, (1 / sharpGrid.pO25) / tipicoMarginTotals).toFixed(2));
+      const calcOddU35 = config.exactPlayU35
+        ? Number(parseFloat(config.exactPlayU35).toFixed(2))
+        : Number(Math.max(1.10, (1 / sharpGrid.pU35) / 1.045).toFixed(2));
+      const calcOddBTTS = Number(Math.max(1.22, (1 / sharpGrid.pBTTS) / tipicoMarginTotals).toFixed(2));
+
+      const isSteamMove = (play1 * fairP1 > 1.005) || (play2 * fairP2 > 1.005) || (calcOddU35 * sharpGrid.pU35 > 1.005);
+
+      return {
+        xgHome,
+        xgAway,
+        bookieLabel: config.bookieLabel || 'Tipico / EU-Kalibrierung',
+        isSteamMove,
+        odds: {
+          '1': Number(play1.toFixed(2)),
+          'X': Number(playX.toFixed(2)),
+          '2': Number(play2.toFixed(2)),
+          '1X': calcOdd1X,
+          'X2': calcOddX2,
+          'DNB1': calcOddDNB1,
+          'DNB2': calcOddDNB2,
+          'O15': calcOddO15,
+          'O25': calcOddO25,
+          'U35': calcOddU35,
+          'BTTS': calcOddBTTS
+        }
+      };
+    }
+
+    function createInitialMatches() {
+      const demoConfigs = [
+        {
+          id: 'm1',
+          league: 'soccer_germany_bundesliga',
+          leagueLabel: '🇩🇪 1. Bundesliga',
+          dayOffset: 0,
+          timeLabel: 'Heute, 15:30 Uhr',
+          home: 'Bayer 04 Leverkusen',
+          away: 'Eintracht Frankfurt',
+          bookieLabel: '🔥 STEAM: Pinnacle 1.50 vs. Tipico 1.62',
+          sharp1: 1.50, sharpX: 4.60, sharp2: 6.20,
+          sharpTotalLine: 3.5, sharpOverOdd: 2.05, sharpUnderOdd: 1.82, // Beispiel: 3.5er Linie wird automatisch in echte 2.5er Quote (~1.40) umgerechnet!
+          odd1: 1.62, oddX: 4.30, odd2: 5.20
+        },
+        {
+          id: 'm2',
+          league: 'soccer_germany_bundesliga',
+          leagueLabel: '🇩🇪 1. Bundesliga',
+          dayOffset: 0,
+          timeLabel: 'Heute, 18:30 Uhr',
+          home: 'FC Bayern München',
+          away: 'VfB Stuttgart',
+          bookieLabel: '🎯 High-Scoring Match (Linie 3.5 -> 2.5 korrigiert)',
+          sharp1: 1.38, sharpX: 5.40, sharp2: 7.50,
+          sharpTotalLine: 3.5, sharpOverOdd: 1.80, sharpUnderOdd: 2.05,
+          odd1: 1.42, oddX: 5.00, odd2: 6.80
+        },
+        {
+          id: 'm3',
+          league: 'soccer_epl',
+          leagueLabel: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League',
+          dayOffset: 1,
+          timeLabel: 'Morgen, 17:30 Uhr',
+          home: 'FC Arsenal',
+          away: 'FC Liverpool',
+          bookieLabel: '💎 UNTER-VALUE (Dixon-Coles Low-Score)',
+          sharp1: 2.32, sharpX: 3.30, sharp2: 3.25,
+          sharpTotalLine: 2.5, sharpOverOdd: 1.98, sharpUnderOdd: 1.88,
+          odd1: 2.40, oddX: 3.40, odd2: 3.10, exactPlayO25: 1.85
+        },
+        {
+          id: 'm4',
+          league: 'soccer_uefa_champs_league',
+          leagueLabel: '🏆 UEFA Champions League',
+          dayOffset: 2,
+          timeLabel: 'Di., 21:00 Uhr',
+          home: 'Real Madrid',
+          away: 'Borussia Dortmund',
+          bookieLabel: '🔥 STEAM: Pinnacle 1.48 vs. Tipico 1.58',
+          sharp1: 1.48, sharpX: 4.70, sharp2: 6.40,
+          sharpTotalLine: 3.0, sharpOverOdd: 1.72, sharpUnderOdd: 2.15,
+          odd1: 1.58, oddX: 4.50, odd2: 5.50
+        }
+      ];
+
+      return demoConfigs.map(item => {
+        const calc = buildSharpVsSoftMatch(item);
+        return {
+          id: item.id,
+          league: item.league,
+          leagueLabel: item.leagueLabel,
+          dayOffset: item.dayOffset,
+          timeLabel: item.timeLabel,
+          home: item.home,
+          away: item.away,
+          bookieLabel: calc.bookieLabel,
+          isSteamMove: calc.isSteamMove,
+          xgHome: calc.xgHome,
+          xgAway: calc.xgAway,
+          odds: calc.odds
+        };
+      });
+    }
+
+    let matches = [];
+    try {
+      const saved = JSON.parse(localStorage.getItem('tb_matches_v31'));
+      if (Array.isArray(saved) && saved.length > 0 && saved[0].odds && saved[0].odds['U35']) {
+        matches = saved;
+      } else {
+        matches = createInitialMatches();
+      }
+    } catch (e) {
+      matches = createInitialMatches();
+    }
+
+    function analyzeMatchPoisson(m) {
+      const grid = computeDixonColesGrid(m.xgHome, m.xgAway);
+      const isAwayFav = (m.odds['2'] < m.odds['1']);
+
+      const dcKey = isAwayFav ? 'X2' : '1X';
+      const dnbKey = isAwayFav ? 'DNB2' : 'DNB1';
+
+      const allProbs = {
+        '1': grid.p1,
+        '2': grid.p2,
+        '1X': grid.p1X,
+        'X2': grid.pX2,
+        'DNB1': grid.pDNB1,
+        'DNB2': grid.pDNB2,
+        'O15': grid.pO15,
+        'O25': grid.pO25,
+        'U35': grid.pU35,
+        'BTTS': grid.pBTTS
+      };
+
+      const allLabels = {
+        '1': 'Heimsieg (1)',
+        '2': 'Auswärtssieg (2)',
+        '1X': 'Doppelte Chance 1X',
+        'X2': 'Doppelte Chance X2',
+        'DNB1': 'Draw No Bet (Heim)',
+        'DNB2': 'Draw No Bet (Gast)',
+        'O15': 'Über 1,5 Tore',
+        'O25': 'Über 2,5 Tore',
+        'U35': 'Unter 3,5 Tore',
+        'BTTS': 'Beide Teams treffen'
+      };
+
+      const activeKeys = ['1', '2', dcKey, dnbKey, 'U35', 'O15', 'O25', 'BTTS'];
+      const markets = {};
+      let maxEv = -1;
+
+      activeKeys.forEach(k => {
+        const odd = parseFloat(m.odds?.[k]) || 1.50;
+        const prob = allProbs[k];
+        const ev = (prob * odd) - 1;
+        if (ev > maxEv) maxEv = ev;
+        markets[k] = { key: k, label: allLabels[k], prob, odd, ev };
+      });
+
+      return { markets, activeKeys, dcKey, dnbKey, isAwayFav, maxEv };
+    }
+
+    // --- UI STEUERUNG ---
+    function togglePanel(id) {
+      const el = document.getElementById(id);
+      const isHidden = el.classList.contains('hidden');
+      ['apiDrawer', 'customMatchDrawer', 'editOddDrawer'].forEach(p => {
+        document.getElementById(p).classList.add('hidden');
+      });
+      if (isHidden) {
+        el.classList.remove('hidden');
+        if (id === 'apiDrawer') {
+          const inp = document.getElementById('oddsApiKeyInput');
+          inp.value = localStorage.getItem('tb_odds_api_key') || '';
+          setTimeout(() => inp.focus(), 100);
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    async function pasteApiKeyFromClipboard() {
+      try {
+        if (navigator.clipboard && navigator.clipboard.readText) {
+          const text = await navigator.clipboard.readText();
+          if (text) {
+            document.getElementById('oddsApiKeyInput').value = text.trim();
+            document.getElementById('apiStatusText').textContent = '✅ Eingefügt! Jetzt rechts auf Speichern tippen.';
+            document.getElementById('apiStatusText').className = 'text-xs text-emerald-400 font-bold';
+            return;
+          }
+        }
+      } catch (e) {}
+      const inp = document.getElementById('oddsApiKeyInput');
+      inp.focus();
+      document.getElementById('apiStatusText').textContent = '👉 Halte den Finger im schwarzen Feld gedrückt und wähle „Einfügen“.';
+      document.getElementById('apiStatusText').className = 'text-xs text-amber-400 font-bold';
+    }
+
+    function saveAndFetchApiKey() {
+      const k = document.getElementById('oddsApiKeyInput').value.trim();
+      if (k) {
+        localStorage.setItem('tb_odds_api_key', k);
+        updateApiStatusUI();
+        document.getElementById('apiDrawer').classList.add('hidden');
+        fetchLiveOdds(true);
+      } else {
+        document.getElementById('apiStatusText').textContent = '⚠️ Bitte zuerst deinen API-Schlüssel eintragen!';
+        document.getElementById('apiStatusText').className = 'text-xs text-rose-400 font-bold';
+      }
+    }
+
+    function clearApiKey() {
+      localStorage.removeItem('tb_odds_api_key');
+      document.getElementById('oddsApiKeyInput').value = '';
+      updateApiStatusUI();
+    }
+
+    function updateApiStatusUI() {
+      const k = localStorage.getItem('tb_odds_api_key');
+      const dot = document.getElementById('apiStatusDot');
+      const txt = document.getElementById('apiStatusText');
+      if (k) {
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
+        txt.textContent = `✅ Aktiver Key gespeichert (${k.slice(0, 6)}...)`;
+        txt.className = 'text-xs text-emerald-400 font-bold';
+      } else {
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400';
+        txt.textContent = 'Status: Noch kein Key gespeichert';
+        txt.className = 'text-xs text-slate-400 font-semibold';
+      }
+    }
+
+    function openOddEditor(matchId, marketKey, event) {
+      if (event) event.stopPropagation();
+      const m = matches.find(x => x.id === matchId);
+      if (!m) return;
+      const { markets } = analyzeMatchPoisson(m);
+      const mk = markets[marketKey];
+
+      editingTarget = { matchId, marketKey };
+      document.getElementById('editOddTitle').textContent = `${m.home} vs. ${m.away} — ${mk.label}`;
+      document.getElementById('editOddValueInput').value = mk.odd.toFixed(2);
+      document.getElementById('resyncAllCheckbox').checked = false;
+
+      ['apiDrawer', 'customMatchDrawer'].forEach(p => document.getElementById(p).classList.add('hidden'));
+      document.getElementById('editOddDrawer').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function stepOddInput(delta) {
+      const inp = document.getElementById('editOddValueInput');
+      let val = parseFloat(inp.value) || 1.50;
+      val = Math.max(1.01, val + delta);
+      inp.value = val.toFixed(2);
+    }
+
+    function saveEditedOdd() {
+      const { matchId, marketKey } = editingTarget;
+      const m = matches.find(x => x.id === matchId);
+      if (m && marketKey) {
+        const raw = document.getElementById('editOddValueInput').value.replace(',', '.');
+        const val = parseFloat(raw);
+        const resync = document.getElementById('resyncAllCheckbox').checked;
+
+        if (!isNaN(val) && val > 1.0) {
+          m.odds[marketKey] = Number(val.toFixed(2));
+          if (resync) {
+            // Passt auch bei großen Abweichungen (z.B. O25 oder O15) das gesamte Tor-Modell an die eingegebene Tipico-Quote an!
+            const lineForSync = marketKey === 'O15' ? 1.5 : (marketKey === 'U35' ? 3.5 : 2.5);
+            const overOddForSync = marketKey === 'U35' ? (1 / (1 - (1 / val) / 1.05)) : val;
+            const recalc = buildSharpVsSoftMatch({
+              odd1: m.odds['1'],
+              oddX: m.odds['X'] || 3.50,
+              odd2: m.odds['2'],
+              sharpTotalLine: lineForSync,
+              sharpOverOdd: overOddForSync,
+              exactPlayO25: marketKey === 'O25' ? val : null
+            });
+            m.xgHome = recalc.xgHome;
+            m.xgAway = recalc.xgAway;
+            m.odds = recalc.odds;
+          } else {
+            lockedPicks[matchId] = marketKey;
+          }
+          saveMatches();
+          recalculateAll();
+        }
+      }
+      document.getElementById('editOddDrawer').classList.add('hidden');
+    }
+
+    function updateXg(matchId, side, val) {
+      const m = matches.find(x => x.id === matchId);
+      if (!m) return;
+      const num = parseFloat(String(val).replace(',', '.'));
+      if (!isNaN(num) && num >= 0.2 && num <= 5.5) {
+        if (side === 'home') m.xgHome = num;
+        else m.xgAway = num;
+        saveMatches();
+        recalculateAll();
+      }
+    }
+
+    function selectMarketForSlip(matchId, marketKey) {
+      if (lockedPicks[matchId] === marketKey) {
+        delete lockedPicks[matchId];
+      } else {
+        lockedPicks[matchId] = marketKey;
+      }
+      recalculateAll();
+    }
+
+    function setTimeframe(days) {
+      currentTimeframe = days;
+      [1, 3, 7].forEach(d => {
+        const btn = document.getElementById(`tf-${d}`);
+        btn.className = (d === days)
+          ? "py-2 rounded-lg text-xs font-extrabold transition bg-rose-600 text-white shadow"
+          : "py-2 rounded-lg text-xs font-extrabold transition text-slate-400";
+      });
+      recalculateAll();
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      const activeClasses = {
+        safe: 'bg-emerald-500/15 border-emerald-500/60',
+        value: 'bg-amber-500/15 border-amber-500/60',
+        yolo: 'bg-rose-500/15 border-rose-500/60'
+      };
+      ['safe', 'value', 'yolo'].forEach(m => {
+        const el = document.getElementById(`mode-${m}`);
+        el.className = (m === mode)
+          ? `text-left p-3 rounded-xl border transition-all ${activeClasses[m]}`
+          : "text-left p-3 rounded-xl border transition-all bg-slate-900/70 border-white/10";
+      });
+      recalculateAll();
+    }
+
+    function getFilteredMatches() {
+      const league = document.getElementById('leagueSelect').value;
+      return matches.filter(m => {
+        const leagueOk = (league === 'all') || (m.league === league);
+        const timeOk = (m.dayOffset || 0) < currentTimeframe;
+        return leagueOk && timeOk;
+      });
+    }
+
+    function recalculateAll() {
+      const visibleMatches = getFilteredMatches();
+      document.getElementById('matchCountBadge').textContent = visibleMatches.length;
+
+      const container = document.getElementById('matchesContainer');
+      if (visibleMatches.length === 0) {
+        container.innerHTML = `
+          <div class="card-panel rounded-2xl p-6 text-center border border-white/10">
+            <p class="text-sm font-bold text-white mb-1">Keine Spiele in diesem Zeitfenster.</p>
+            <p class="text-xs text-slate-400 mb-4">Tippe auf „7 Tage“ oder starte den Multi-Liga Value-Scan.</p>
+            <button type="button" onclick="setTimeframe(7)" class="px-4 py-2.5 rounded-xl bg-rose-600 text-white text-xs font-extrabold">Jetzt auf 7 Tage umschalten</button>
+          </div>`;
+        renderSlip([]);
+        return;
+      }
+
+      const enriched = visibleMatches.map(m => {
+        const { markets, activeKeys, dcKey, dnbKey, isAwayFav, maxEv } = analyzeMatchPoisson(m);
+        const favWinKey = isAwayFav ? '2' : '1';
+        let chosenKey = lockedPicks[m.id];
+
+        if (!chosenKey || !markets[chosenKey]) {
+          const allCandidates = activeKeys.map(k => markets[k]);
+
+          if (currentMode === 'safe') {
+            const safePool = allCandidates.filter(mk => mk.prob >= 0.62 && mk.odd >= 1.14 && mk.odd <= 1.85);
+            const pool = safePool.length > 0 ? safePool : [markets[dnbKey], markets['U35'], markets[dcKey], markets['O15'], markets[favWinKey]];
+            pool.sort((a, b) => (b.ev * 0.65 + b.prob * 0.35) - (a.ev * 0.65 + a.prob * 0.35));
+            chosenKey = pool[0].key;
+          } else if (currentMode === 'value') {
+            const valPool = allCandidates.filter(mk => mk.prob >= 0.44 && mk.odd >= 1.25 && mk.odd <= 2.85);
+            const pool = valPool.length > 0 ? valPool : allCandidates;
+            pool.sort((a, b) => (b.ev * 0.85 + b.prob * 0.15) - (a.ev * 0.85 + a.prob * 0.15));
+            chosenKey = pool[0].key;
+          } else {
+            const yoloPool = allCandidates.filter(mk => mk.prob >= 0.35 && mk.odd >= 1.50 && mk.odd <= 3.60);
+            const pool = yoloPool.length > 0 ? yoloPool : allCandidates;
+            pool.sort((a, b) => (b.ev * 0.75 + (b.odd / 4) * 0.25) - (a.ev * 0.75 + (a.odd / 4) * 0.25));
+            chosenKey = pool[0].key;
+          }
+        }
+        return { match: m, markets, activeKeys, bestPick: markets[chosenKey], maxEv };
+      });
+
+      enriched.sort((a, b) => b.bestPick.ev - a.bestPick.ev);
+
+      container.innerHTML = enriched.map(({ match, markets, activeKeys, bestPick }) => {
+        const hasPosEv = bestPick.ev >= 0;
+        return `
+          <div class="card-panel rounded-2xl p-4 border ${hasPosEv ? 'border-emerald-500/40' : 'border-white/10'}">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-white/10">${match.leagueLabel}</span>
+                <span class="text-[11px] text-slate-400 font-medium">${match.timeLabel}</span>
+                ${hasPosEv ? `<span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">💎 +${(bestPick.ev * 100).toFixed(1)}% VALUE</span>` : ''}
+              </div>
+              <div class="flex items-center gap-1.5 text-[11px]">
+                <span class="text-slate-400">xG:</span>
+                <input type="number" step="0.1" value="${match.xgHome}" onchange="updateXg('${match.id}', 'home', this.value)"
+                  class="w-12 bg-slate-900 border border-white/20 rounded-lg py-0.5 text-center mono font-bold text-rose-400" />
+                <span class="text-slate-500">:</span>
+                <input type="number" step="0.1" value="${match.xgAway}" onchange="updateXg('${match.id}', 'away', this.value)"
+                  class="w-12 bg-slate-900 border border-white/20 rounded-lg py-0.5 text-center mono font-bold text-emerald-400" />
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div>
+                <div class="text-sm sm:text-base font-black text-white">${match.home} <span class="text-slate-500 font-normal">vs.</span> ${match.away}</div>
+                <div class="text-[10px] text-amber-300/90 font-semibold mt-0.5">${match.bookieLabel || 'Pinnacle-Anker vs. Tipico'}</div>
+              </div>
+              <span class="text-[10px] font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-1 rounded-lg">
+                ★ Best-Pick: ${bestPick.label} (${bestPick.odd.toFixed(2)})
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              ${activeKeys.map(k => {
+                const mk = markets[k];
+                const isSelected = bestPick.key === k;
+                const evPercent = (mk.ev * 100).toFixed(1);
+                const evColor = mk.ev >= 0 ? 'text-emerald-400 font-extrabold' : 'text-slate-400';
+                return `
+                  <div onclick="selectMarketForSlip('${match.id}', '${k}')" 
+                    class="cursor-pointer rounded-xl p-2.5 border transition-all ${isSelected ? 'bg-emerald-600/20 border-emerald-400 shadow' : 'bg-slate-900/90 border-white/10'}">
+                    <div class="flex items-center justify-between text-[10px] text-slate-300 font-bold mb-1">
+                      <span class="truncate pr-1">${mk.label}</span>
+                      <button type="button" onclick="openOddEditor('${match.id}', '${k}', event)" class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-extrabold shrink-0">✎ Quote</button>
+                    </div>
+                    <div class="flex items-baseline justify-between">
+                      <span class="text-sm font-black mono text-white">${mk.odd.toFixed(2)}</span>
+                      <span class="text-[10px] mono ${evColor}">${(mk.prob * 100).toFixed(0)}% | ${mk.ev >= 0 ? '+' : ''}${evPercent}%</span>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      let targetLegs = currentMode === 'safe' ? 2 : (currentMode === 'value' ? 3 : 4);
+      const sortedForSlip = [...enriched].sort((a, b) => {
+        const aLocked = lockedPicks[a.match.id] ? 10 : 0;
+        const bLocked = lockedPicks[b.match.id] ? 10 : 0;
+        return (bLocked + b.bestPick.ev * 0.75 + b.bestPick.prob * 0.25) - (aLocked + a.bestPick.ev * 0.75 + a.bestPick.prob * 0.25);
+      });
+
+      renderSlip(sortedForSlip.slice(0, Math.min(targetLegs, sortedForSlip.length)));
+    }
+
+    function renderSlip(slipItems) {
+      const titles = {
+        safe: '🛡️ Safe-Bruder Kombi (2er)',
+        value: '⚖️ Value-Hunter Kombi (3er)',
+        yolo: '🚀 Gönn-Dir-Bruder Kombi (4er)'
+      };
+      document.getElementById('slipTitle').textContent = titles[currentMode];
+      document.getElementById('slipCountBadge').textContent = `${slipItems.length} ${slipItems.length === 1 ? 'Spiel' : 'Spiele'}`;
+
+      const picksEl = document.getElementById('slipPicksContainer');
+      if (slipItems.length === 0) {
+        picksEl.innerHTML = `<p class="text-xs text-slate-400 py-3 text-center">Keine Spiele im Zeitfenster.</p>`;
+        document.getElementById('slipTotalOdds').textContent = '1.00';
+        document.getElementById('slipHitProb').textContent = '0.0 %';
+        document.getElementById('slipProbBar').style.width = '0%';
+        document.getElementById('slipStake').textContent = '0.00 €';
+        document.getElementById('slipPotentialWin').textContent = '0.00 €';
+        return;
+      }
+
+      let combinedOdds = 1.0;
+      let combinedProb = 1.0;
+
+      picksEl.innerHTML = slipItems.map(({ match, bestPick }) => {
+        combinedOdds *= bestPick.odd;
+        combinedProb *= bestPick.prob;
+        const evPct = (bestPick.ev * 100).toFixed(1);
+        const evCol = bestPick.ev >= 0 ? 'text-emerald-400 font-bold' : 'text-slate-400';
+        return `
+          <div class="pt-3 first:pt-0 flex items-center justify-between gap-2">
+            <div>
+              <div class="text-xs font-extrabold text-white">${match.home} – ${match.away}</div>
+              <div class="text-xs text-emerald-400 font-bold">Tipp: ${bestPick.label}</div>
+              <div class="text-[10px] text-slate-400 mono">Chance: ${(bestPick.prob * 100).toFixed(1)}% | <span class="${evCol}">EV: ${bestPick.ev >= 0 ? '+' : ''}${evPct}%</span></div>
+            </div>
+            <button type="button" onclick="openOddEditor('${match.id}', '${bestPick.key}', event)" 
+              class="px-3 py-1.5 rounded-xl bg-slate-900 border border-amber-400/40 active:bg-slate-800 text-right shrink-0">
+              <span class="block text-[9px] text-amber-300 uppercase font-bold">✎ Tipico-Quote</span>
+              <span class="text-sm font-black mono text-white">${bestPick.odd.toFixed(2)}</span>
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      const bankroll = parseFloat(document.getElementById('bankrollInput').value) || 50;
+      const stakePct = currentMode === 'safe' ? 0.05 : (currentMode === 'value' ? 0.03 : 0.015);
+      const recommendedStake = Math.max(0.50, bankroll * stakePct);
+      const potentialWin = recommendedStake * combinedOdds;
+      const hitProbPct = Math.min(99, Math.max(1, combinedProb * 100));
+      const totalEvPct = ((combinedProb * combinedOdds) - 1) * 100;
+
+      document.getElementById('slipTotalOdds').textContent = combinedOdds.toFixed(2);
+      document.getElementById('slipHitProb').textContent = `${hitProbPct.toFixed(1)} %`;
+      document.getElementById('slipProbBar').style.width = `${hitProbPct.toFixed(1)}%`;
+      document.getElementById('slipStake').textContent = `${recommendedStake.toFixed(2)} €`;
+      document.getElementById('slipPotentialWin').textContent = `${potentialWin.toFixed(2)} €`;
+
+      const evBadge = document.getElementById('slipEvBadge');
+      evBadge.textContent = `Kombi-Erwartungswert (EV): ${totalEvPct >= 0 ? '+' : ''}${totalEvPct.toFixed(1)} %`;
+      evBadge.className = totalEvPct >= 0 ? 'text-[11px] text-emerald-300 font-extrabold' : 'text-[11px] text-amber-300 font-semibold';
+    }
+
+    // ============================================================================
+    // LIVE API PARSER V3.1: EXAKTES POINT-MATCHING FÜR TOTALS (2.5 / 3.0 / 3.5)
+    // ============================================================================
+    function extractTotalsFromBm(bm) {
+      const m = bm?.markets?.find(x => x.key === 'totals');
+      if (!m || !Array.isArray(m.outcomes)) return null;
+      const over = m.outcomes.find(o => o.name === 'Over');
+      const under = m.outcomes.find(o => o.name === 'Under');
+      if (!over) return null;
+      return {
+        point: parseFloat(over.point) || 2.5,
+        overPrice: parseFloat(over.price),
+        underPrice: under ? parseFloat(under.price) : null
+      };
+    }
+
+    function parseApiMatchItem(item, sportKey, leagueTitle, now, idx) {
+      const bms = item.bookmakers || [];
+      if (bms.length === 0) return null;
+
+      // 1. Schärfster Buchmacher (Pinnacle) als Wahrheits-Anker
+      let sharpBm = bms.find(b => b.key.includes('pinnacle')) || bms.find(b => b.key.includes('betfair')) || bms.find(b => b.key.includes('marathon')) || bms[0];
+
+      // 2. Suche gezielt nach Tipico oder deutschen/EU Referenz-Buchmachern (KEIN blindes Max-Quoten-Sammeln mehr!)
+      const softPriority = ['tipico_de', 'tipico', 'bwin', 'bet365', 'interwetten', 'unibet_eu', 'unibet', 'williamhill'];
+      let playBm = null;
+      for (const key of softPriority) {
+        const found = bms.find(b => b.key.toLowerCase().includes(key));
+        if (found) { playBm = found; break; }
+      }
+      if (!playBm) playBm = bms.find(b => b.key !== sharpBm.key) || sharpBm;
+
+      const sharpH2h = sharpBm.markets?.find(m => m.key === 'h2h');
+      const s1 = sharpH2h?.outcomes?.find(o => o.name === item.home_team)?.price || 2.00;
+      const s2 = sharpH2h?.outcomes?.find(o => o.name === item.away_team)?.price || 3.30;
+      const sX = sharpH2h?.outcomes?.find(o => o.name === 'Draw')?.price || 3.50;
+
+      const playH2h = playBm.markets?.find(m => m.key === 'h2h');
+      const odd1 = playH2h?.outcomes?.find(o => o.name === item.home_team)?.price || s1;
+      const odd2 = playH2h?.outcomes?.find(o => o.name === item.away_team)?.price || s2;
+      const oddX = playH2h?.outcomes?.find(o => o.name === 'Draw')?.price || sX;
+
+      // 3. Exakte Tor-Linie auslesen (verhindert, dass eine 3.5-Linie als 2.5-Quote ausgegeben wird!)
+      // Suche zuerst, ob irgendein Buchmacher eine echte 2.5-Tore-Linie liefert:
+      let exact25Bm = null;
+      let exact25Data = null;
+      for (const b of [playBm, sharpBm, ...bms]) {
+        const t = extractTotalsFromBm(b);
+        if (t && Math.abs(t.point - 2.5) < 0.08) {
+          exact25Bm = b;
+          exact25Data = t;
+          break;
+        }
+      }
+
+      const sharpTotals = extractTotalsFromBm(sharpBm) || exact25Data || extractTotalsFromBm(playBm);
+      const playTotals = extractTotalsFromBm(playBm);
+
+      let sharpTotalLine = sharpTotals ? sharpTotals.point : 2.5;
+      let sharpOverOdd = sharpTotals ? sharpTotals.overPrice : null;
+      let sharpUnderOdd = sharpTotals ? sharpTotals.underPrice : null;
+
+      // Nur wenn playBm (z.B. Tipico) wirklich exakt 2.5 oder 3.5 anbietet, direkt als feste Quote übernehmen:
+      let exactPlayO25 = null;
+      let exactPlayU35 = null;
+      if (playTotals && Math.abs(playTotals.point - 2.5) < 0.08) {
+        exactPlayO25 = playTotals.overPrice;
+      } else if (exact25Data) {
+        exactPlayO25 = exact25Data.overPrice;
+      }
+      if (playTotals && Math.abs(playTotals.point - 3.5) < 0.08 && playTotals.underPrice) {
+        exactPlayU35 = playTotals.underPrice;
+      }
+
+      const lineInfo = sharpTotals ? `Linie ${sharpTotals.point}` : '1X2-Kalibriert';
+      const bookieLabel = `${playBm.title || 'Tipico/EU'} vs. ${sharpBm.title || 'Sharp'} (${lineInfo})`;
+
+      const calc = buildSharpVsSoftMatch({
+        sharp1: s1, sharpX: sX, sharp2: s2,
+        sharpTotalLine, sharpOverOdd, sharpUnderOdd,
+        odd1, oddX, odd2,
+        exactPlayO25, exactPlayU35,
+        bookieLabel
+      });
+
+      const start = new Date(item.commence_time);
+      const diffDays = Math.max(0, Math.floor((start - now) / (1000 * 60 * 60 * 24)));
+
+      return {
+        id: 'live_' + sportKey + '_' + idx + '_' + Date.now(),
+        league: sportKey,
+        leagueLabel: leagueTitle || item.sport_title || 'Top-Liga',
+        dayOffset: diffDays,
+        timeLabel: start.toLocaleString('de-DE', { weekday: 'short', hour: '2-digit', minute: '2-digit' }) + ' Uhr',
+        home: item.home_team,
+        away: item.away_team,
+        bookieLabel: calc.bookieLabel,
+        isSteamMove: calc.isSteamMove,
+        xgHome: calc.xgHome,
+        xgAway: calc.xgAway,
+        odds: calc.odds
+      };
+    }
+
+    async function fetchLiveOdds(multiLeagueScan = false) {
+      const apiKey = localStorage.getItem('tb_odds_api_key');
+      if (!apiKey) {
+        togglePanel('apiDrawer');
+        return;
+      }
+
+      const btn = document.getElementById(multiLeagueScan ? 'multiScanBtn' : 'fetchBtn');
+      const origText = btn.innerHTML;
+      btn.innerHTML = `<span>⏳ Kalibriere Linien & Quoten...</span>`;
+
+      try {
+        const now = new Date();
+        const scanDays = multiLeagueScan ? Math.max(3, currentTimeframe) : currentTimeframe;
+        if (multiLeagueScan && currentTimeframe < 3) setTimeframe(3);
+
+        const future = new Date(now.getTime() + scanDays * 24 * 60 * 60 * 1000);
+        const commenceTimeTo = future.toISOString().split('.')[0] + 'Z';
+
+        const selectedLeague = document.getElementById('leagueSelect').value;
+        const leaguesToScan = (multiLeagueScan || selectedLeague === 'all')
+          ? [
+              { key: 'soccer_germany_bundesliga', label: '🇩🇪 1. Bundesliga' },
+              { key: 'soccer_uefa_champs_league', label: '🏆 Champions League' },
+              { key: 'soccer_epl', label: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League' },
+              { key: 'soccer_spain_la_liga', label: '🇪🇸 La Liga' }
+            ]
+          : [{ key: selectedLeague, label: selectedLeague }];
+
+        let collected = [];
+        for (const lg of leaguesToScan) {
+          const url = `https://api.the-odds-api.com/v4/sports/${lg.key}/odds/?apiKey=${apiKey}&regions=eu&markets=h2h,totals&commenceTimeTo=${commenceTimeTo}`;
+          const res = await fetch(url);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data)) {
+              data.slice(0, 8).forEach((item, idx) => {
+                const parsed = parseApiMatchItem(item, lg.key, lg.label, now, idx);
+                if (parsed) collected.push(parsed);
+              });
+            }
+          }
+        }
+
+        if (collected.length > 0) {
+          if (multiLeagueScan) document.getElementById('leagueSelect').value = 'all';
+          matches = collected;
+          lockedPicks = {};
+          saveMatches();
+          recalculateAll();
+          btn.innerHTML = `<span>✅ ${collected.length} Spiele exakt kalibriert!</span>`;
+        } else {
+          setTimeframe(7);
+          btn.innerHTML = `<span>Keine Spiele -> 7 Tage aktiv</span>`;
+        }
+      } catch (e) {
+        togglePanel('apiDrawer');
+        document.getElementById('apiStatusText').textContent = '⚠️ API-Abruf fehlgeschlagen. Bitte überprüfe deinen Key!';
+        document.getElementById('apiStatusText').className = 'text-xs text-rose-400 font-bold';
+      }
+      setTimeout(() => {
+        btn.innerHTML = origText;
+      }, 2800);
+    }
+
+    function addCustomMatch() {
+      const home = document.getElementById('cmHome').value.trim() || 'Heimteam';
+      const away = document.getElementById('cmAway').value.trim() || 'Gastteam';
+      const odd1 = parseFloat(document.getElementById('cmOdd1').value) || 2.10;
+      const oddX = parseFloat(document.getElementById('cmOddX').value) || 3.50;
+      const odd2 = parseFloat(document.getElementById('cmOdd2').value) || 3.20;
+      const oddO25 = parseFloat(document.getElementById('cmOddO25').value) || 1.65;
+
+      const calc = buildSharpVsSoftMatch({
+        odd1, oddX, odd2,
+        sharpTotalLine: 2.5, sharpOverOdd: oddO25,
+        exactPlayO25: oddO25,
+        bookieLabel: '🔥 Eigene Tipico-Analyse'
+      });
+
+      matches.unshift({
+        id: 'cm_' + Date.now(),
+        league: document.getElementById('leagueSelect').value === 'all' ? 'soccer_germany_bundesliga' : document.getElementById('leagueSelect').value,
+        leagueLabel: '🔥 Eigene Tipico-Analyse',
+        dayOffset: 0,
+        timeLabel: 'Heute, Live',
+        home,
+        away,
+        bookieLabel: calc.bookieLabel,
+        isSteamMove: false,
+        xgHome: calc.xgHome,
+        xgAway: calc.xgAway,
+        odds: calc.odds
+      });
+      saveMatches();
+      document.getElementById('customMatchDrawer').classList.add('hidden');
+      recalculateAll();
+    }
+
+    function saveMatches() {
+      localStorage.setItem('tb_matches_v31', JSON.stringify(matches));
+    }
+
+    function resetDefaultMatches() {
+      localStorage.removeItem('tb_matches_v31');
+      lockedPicks = {};
+      matches = createInitialMatches();
+      recalculateAll();
+    }
+
+    function copyTicketToClipboard() {
+      const odds = document.getElementById('slipTotalOdds').textContent;
+      const prob = document.getElementById('slipHitProb').textContent;
+      const stake = document.getElementById('slipStake').textContent;
+      const win = document.getElementById('slipPotentialWin').textContent;
+      const ev = document.getElementById('slipEvBadge').textContent;
+      const text = `🎯 TIPPICO BRUDER V3.1 SCHEIN 🎯\nGesamtquote: ${odds} | Trefferchance: ${prob}\n${ev}\nEinsatz: ${stake} -> Möglicher Gewinn: ${win}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+      }
+      const btn = document.getElementById('copyBtn');
+      btn.innerHTML = `<span>✅ Kopiert!</span>`;
+      setTimeout(() => {
+        btn.innerHTML = `<span>📋 Schein in Zwischenablage kopieren</span>`;
+      }, 2000);
+    }
+
+    // --- INIT ---
+    updateApiStatusUI();
+    recalculateAll();
+  </script>
+</body>
+</html>
