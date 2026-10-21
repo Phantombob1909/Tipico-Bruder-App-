@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="google" content="notranslate" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tippico Bruder V4.0 Ultimate – Bookie-Beater Engine</title>
+  <title>Tippico Bruder V4.1 – Pre-Match Filter & Real Tipico Calibration</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
@@ -46,8 +46,8 @@
 <body class="min-h-screen pb-24 notranslate">
 
   <!-- TOP BANNER -->
-  <div class="bg-gradient-to-r from-emerald-500 via-amber-400 to-emerald-500 text-slate-950 text-[11px] font-black py-1.5 px-3 text-center tracking-wide shadow">
-    ⚔️ TIPPICO BRUDER V4.0 ULTIMATE (BOOKIE-BEATER) — Mindest-Quoten-Radar + Favoriten-Fallen-Schutz + Spreads-API!
+  <div class="bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-400 text-slate-950 text-[11px] font-black py-1.5 px-3 text-center tracking-wide shadow">
+    ⏱️ TIPPICO BRUDER V4.1 — Strikter Vorab-Filter (keine laufenden Spiele mehr!) + Echte Tipico-Quoten-Normierung!
   </div>
 
   <!-- HEADER -->
@@ -61,9 +61,9 @@
         <div>
           <div class="flex items-center gap-1.5">
             <h1 class="text-lg sm:text-xl font-black tracking-tight text-white">TIPPICO <span class="text-emerald-400">BRUDER</span></h1>
-            <span class="px-1.5 py-0.5 text-[9px] font-black uppercase bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded">V4.0 ULTIMATE</span>
+            <span class="px-1.5 py-0.5 text-[9px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded">V4.1 LIVE-FIX</span>
           </div>
-          <p class="text-[11px] text-slate-400">Sharp-vs-Public Radar & Fair-Odd Engine</p>
+          <p class="text-[11px] text-slate-400">Nur anstehende Spiele & Tipico-Margen</p>
         </div>
       </div>
 
@@ -100,11 +100,11 @@
     <!-- AUFKLAPPBARES FELDMENÜ 1: API-KEY -->
     <section id="apiDrawer" class="hidden card-panel rounded-2xl p-4 mb-5 border-2 border-emerald-500/60 shadow-2xl">
       <div class="flex items-center justify-between mb-2">
-        <h3 class="text-sm sm:text-base font-black text-emerald-400">🔌 Live-Datenbank (The Odds API – h2h, spreads & totals)</h3>
+        <h3 class="text-sm sm:text-base font-black text-emerald-400">🔌 Live-Datenbank (The Odds API – Nur anstehende Spiele)</h3>
         <button type="button" onclick="togglePanel('apiDrawer')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs font-bold text-slate-300">Schließen ✕</button>
       </div>
       <p class="text-xs text-slate-300 mb-3">
-        V4.0 Ultimate lädt gleichzeitig <strong>1X2, Asian Handicap/Spreads (Draw No Bet) und Tore</strong>. Es vergleicht Pinnacle direkt mit dem Freizeit-Markt, entlarvt Favoriten-Fallen und zeigt dir für jeden Markt die exakte <strong>Mindest-Quote („Ab X.XX“)</strong> für deine Tipico-App:
+        V4.1 filtert bereits angepfiffene Spiele automatisch heraus und kalibriert alle Quoten exakt auf das deutsche Tipico-Niveau (statt überhöhter Wettbörsen-Quoten):
       </p>
       <div class="flex flex-col sm:flex-row gap-2 mb-3">
         <input id="oddsApiKeyInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
@@ -119,7 +119,7 @@
         <div class="flex gap-2 w-full sm:w-auto">
           <button type="button" onclick="clearApiKey()" class="px-3 py-2.5 rounded-xl bg-slate-800 text-xs font-bold text-rose-400">Key löschen</button>
           <button type="button" onclick="saveAndFetchApiKey()" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-emerald-600 active:bg-emerald-500 text-xs sm:text-sm font-black text-white shadow-lg">
-            ✅ Speichern & Live-Scan starten
+            ✅ Speichern & Anstehende Spiele laden
           </button>
         </div>
       </div>
@@ -209,9 +209,9 @@
         </div>
 
         <div class="md:col-span-3">
-          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Zeitfenster</label>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Anstehender Zeitraum</label>
           <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-xl border border-white/20">
-            <button type="button" onclick="setTimeframe(1)" id="tf-1" class="py-2 rounded-lg text-xs font-extrabold transition text-slate-400">Heute</button>
+            <button type="button" onclick="setTimeframe(1)" id="tf-1" class="py-2 rounded-lg text-xs font-extrabold transition text-slate-400">24 Std.</button>
             <button type="button" onclick="setTimeframe(3)" id="tf-3" class="py-2 rounded-lg text-xs font-extrabold transition bg-emerald-600 text-white shadow">3 Tage</button>
             <button type="button" onclick="setTimeframe(7)" id="tf-7" class="py-2 rounded-lg text-xs font-extrabold transition text-slate-400">7 Tage</button>
           </div>
@@ -244,7 +244,7 @@
         <button type="button" onclick="setMode('value')" id="mode-value" class="text-left p-3 rounded-xl border transition-all bg-slate-900/70 border-white/10">
           <div class="flex items-center justify-between mb-0.5">
             <span class="text-xs sm:text-sm font-black text-white">💎 Sharp Value-Sniper</span>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 mono">1er / 2er</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 mono">2er-Kombi</span>
           </div>
           <p class="text-[11px] text-slate-400">Kompromisslos: Nimmt nur echte +EV Quoten-Fehler & Smart-Money-Drops!</p>
         </button>
@@ -263,9 +263,9 @@
     <div id="backtestBanner" class="hidden mb-5 p-4 rounded-2xl bg-indigo-950/90 border-2 border-indigo-400/60 shadow-xl">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <span class="text-[10px] font-black uppercase tracking-wider text-amber-300 block">🧪 REALITÄTS-HÄRTETEST: INKLUSIVE BERÜCHTIGTER FAVORITEN-STÜRZE!</span>
-          <h3 class="text-sm sm:text-base font-black text-white">8 reale Champions-League-Spiele (inkl. Lille–Real 1:0, Stuttgart–Prag 1:1 & Sporting–ManCity 4:1)</h3>
-          <p class="text-xs text-indigo-200 mt-0.5">Beobachte, wie der neue <strong>Favoriten-Fallen-Detektor (⚠️ FALLE)</strong> die stolpernden Favoriten vor Anpfiff anhand der Pinnacle-Quoten entlarvt, sperrt und trotzdem eine <strong>100% gewonnene Kombi</strong> baut!</p>
+          <span class="text-[10px] font-black uppercase tracking-wider text-amber-300 block">🧪 REALITÄTS-HÄRTETEST AKTIV (KEINE LIVE-SPIELE)</span>
+          <h3 class="text-sm sm:text-base font-black text-white">Du siehst gerade die 8 historischen Trainings-Spiele!</h3>
+          <p class="text-xs text-indigo-200 mt-0.5">Tippe oben auf den grün-goldenen Button <strong>„🚀 Alle Ligen scannen“</strong>, um sofort die echten, heute noch anstehenden Live-Spiele zu laden!</p>
         </div>
       </div>
     </div>
@@ -278,12 +278,12 @@
         <div class="flex flex-wrap items-center justify-between gap-2 px-1">
           <div>
             <h2 class="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
-              <span>Analysierte Spiele & Mindest-Quoten</span>
+              <span>Anstehende Spiele (Laufende Spiele ausgeblendet)</span>
               <span id="matchCountBadge" class="px-2 py-0.5 text-xs rounded-full bg-slate-800 text-emerald-400 mono">0</span>
             </h2>
             <p class="text-[11px] text-slate-400">Ist deine Tipico-Quote höher als <span class="text-amber-300 font-bold">„Ab 1.XX“</span>, schlägst du den Buchmacher!</p>
           </div>
-          <button type="button" onclick="loadHistoricalBacktest()" class="text-xs text-indigo-400 font-bold underline">Fallen-Backtest laden</button>
+          <button type="button" onclick="purgeStartedMatches()" class="text-xs text-emerald-400 font-bold underline">⏱️ Laufende Spiele bereinigen</button>
         </div>
 
         <div id="matchesContainer" class="space-y-3.5"></div>
@@ -354,11 +354,11 @@
 
   <script>
     // ============================================================================
-    // MATHEMATISCHE KERN-ENGINE V4.0 ULTIMATE (5 GESETZE GEGEN DIE BUCHMACHER)
+    // MATHEMATISCHE KERN-ENGINE V4.1 (STRIKTER PRE-MATCH FILTER + TIPICO-MARGEN)
     // ============================================================================
     let currentTimeframe = 3;
     let currentMode = 'safe';
-    let taxEnabled = false; // 5% deutsche Wettsteuer optional zuschaltbar
+    let taxEnabled = false;
     let lockedPicks = {};
     let editingTarget = { matchId: null, marketKey: null };
 
@@ -413,7 +413,7 @@
         const rO = 1 / oddOver, rU = 1 / oddUnder;
         fairPOver = rO / (rO + rU);
       } else {
-        fairPOver = Math.min(0.92, Math.max(0.12, (1 / oddOver) / 1.04));
+        fairPOver = Math.min(0.92, Math.max(0.12, (1 / oddOver) / 1.045));
       }
 
       let solvedXg = favImpliedXg;
@@ -429,7 +429,6 @@
       return solvedXg;
     }
 
-    // Power-Methode zur exakten Bereinigung des Favorite-Longshot-Bias
     function powerDeVig3Way(odd1, oddX, odd2) {
       const r1 = 1 / odd1, rX = 1 / oddX, r2 = 1 / odd2;
       let low = 1.0, high = 2.0, k = 1.06;
@@ -444,7 +443,6 @@
       return { fairP1: p1 / norm, fairPX: pX / norm, fairP2: p2 / norm };
     }
 
-    // Dixon-Coles korrigierte Bivariate Poisson-Matrix
     function computeDixonColesGrid(xgH, xgA) {
       let p1 = 0, pX = 0, p2 = 0, pO15 = 0, pO25 = 0, pU25 = 0, pU35 = 0, pBTTS = 0;
       const hL = Math.max(0.20, Math.min(4.8, parseFloat(xgH) || 1.4));
@@ -493,14 +491,14 @@
       return { p1, pX, p2, p1X, pX2, pDNB1, pDNB2, pO15, pO25, pU25, pU35, pBTTS };
     }
 
-    // Baut das Spiel-Modell inkl. Sharp-vs-Public Divergenz & Spreads auf
+    // ============================================================================
+    // V4.1 FIX: ECHTE TIPICO-MARGEN-NORMIERUNG STATT ÜBERHÖHTER AUSREISSER-QUOTEN
+    // ============================================================================
     function buildSharpVsSoftMatch(config) {
-      // Sharp Quoten (Pinnacle)
       const s1 = parseFloat(config.sharp1 || config.odd1) || 2.00;
       const sX = parseFloat(config.sharpX || config.oddX) || 3.50;
       const s2 = parseFloat(config.sharp2 || config.odd2) || 3.40;
 
-      // Soft / Public Quoten (Tipico / EU-Durchschnitt)
       const play1 = parseFloat(config.odd1) || s1;
       const playX = parseFloat(config.oddX) || sX;
       const play2 = parseFloat(config.odd2) || s2;
@@ -508,8 +506,6 @@
       const { fairP1, fairPX, fairP2 } = powerDeVig3Way(s1, sX, s2);
       const pubProbs = powerDeVig3Way(play1, playX, play2);
 
-      // GESETZ 2: Smart-Money-Divergenz (Pinnacle-Wahrscheinlichkeit minus Public-Wahrscheinlichkeit)
-      // Wenn negativ beim Favoriten -> Public wettet blind auf Favorit, aber Pinnacle geht GEGEN den Favoriten!
       const smartDelta1 = fairP1 - pubProbs.fairP1;
       const smartDelta2 = fairP2 - pubProbs.fairP2;
 
@@ -536,38 +532,39 @@
       const xgAway = Number((totalXg * (1 - bestRatio)).toFixed(2));
       const sharpGrid = computeDixonColesGrid(xgHome, xgAway);
 
-      // Unbereinigte Dutching-Weitergabe + Echte API-Spreads (falls vorhanden)
+      // REALISTISCHE TIPICO-NEBENMARKT-MARGEN (Tipico nimmt ~7.5% auf Doppelte Chance & ~6.5% auf DNB/Tore)
+      // Gleichzeitig bleibt ein echter Quoten-Vorteil (edge1 / edge2) erhalten!
       const dutch1X = (play1 * playX) / (play1 + playX);
       const dutchX2 = (play2 * playX) / (play2 + playX);
-      const calcOdd1X = Number(Math.max(1.05, config.exact1X || (dutch1X * 0.992)).toFixed(2));
-      const calcOddX2 = Number(Math.max(1.05, config.exactX2 || (dutchX2 * 0.992)).toFixed(2));
+      const calcOdd1X = Number(Math.max(1.04, config.exact1X || (dutch1X * 0.962)).toFixed(2));
+      const calcOddX2 = Number(Math.max(1.04, config.exactX2 || (dutchX2 * 0.962)).toFixed(2));
 
-      const edge1 = play1 / s1;
-      const edge2 = play2 / s2;
+      const edge1 = Math.max(0.92, Math.min(1.08, play1 / s1));
+      const edge2 = Math.max(0.92, Math.min(1.08, play2 / s2));
       const fairDnb1Odd = 1 / sharpGrid.pDNB1;
       const fairDnb2Odd = 1 / sharpGrid.pDNB2;
-      const calcOddDNB1 = Number(Math.max(1.06, config.exactDNB1 || ((fairDnb1Odd / 1.025) * edge1)).toFixed(2));
-      const calcOddDNB2 = Number(Math.max(1.06, config.exactDNB2 || ((fairDnb2Odd / 1.025) * edge2)).toFixed(2));
+      const calcOddDNB1 = Number(Math.max(1.05, config.exactDNB1 || ((fairDnb1Odd / 1.055) * edge1)).toFixed(2));
+      const calcOddDNB2 = Number(Math.max(1.05, config.exactDNB2 || ((fairDnb2Odd / 1.055) * edge2)).toFixed(2));
 
-      const sOver = parseFloat(config.sharpOverOdd) || (1 / sharpGrid.pO25) / 1.025;
-      const sUnder = parseFloat(config.sharpUnderOdd) || (1 / sharpGrid.pU25) / 1.025;
-      const pOver = parseFloat(config.exactPlayO25) || sOver;
-      const pUnder = parseFloat(config.exactPlayU25) || sUnder;
+      const sOver = parseFloat(config.sharpOverOdd) || (1 / sharpGrid.pO25) / 1.03;
+      const sUnder = parseFloat(config.sharpUnderOdd) || (1 / sharpGrid.pU25) / 1.03;
+      const pOver = parseFloat(config.exactPlayO25) || (1 / sharpGrid.pO25) / 1.06;
+      const pUnder = parseFloat(config.exactPlayU25) || (1 / sharpGrid.pU25) / 1.06;
 
-      const overEdge = Math.max(0.94, Math.min(1.12, pOver / sOver));
-      const underEdge = Math.max(0.94, Math.min(1.12, pUnder / sUnder));
+      const overEdge = Math.max(0.92, Math.min(1.08, pOver / sOver));
+      const underEdge = Math.max(0.92, Math.min(1.08, pUnder / sUnder));
 
-      const calcOddO15 = Number(Math.max(1.08, config.exactO15 || (((1 / sharpGrid.pO15) / 1.032) * overEdge)).toFixed(2));
-      const calcOddO25 = Number(Math.max(1.12, config.exactPlayO25 || (((1 / sharpGrid.pO25) / 1.035) * overEdge)).toFixed(2));
-      const calcOddU35 = Number(Math.max(1.12, config.exactPlayU35 || (((1 / sharpGrid.pU35) / 1.028) * underEdge)).toFixed(2));
-      const calcOddBTTS = Number(Math.max(1.25, config.exactBTTS || (((1 / sharpGrid.pBTTS) / 1.040) * overEdge)).toFixed(2));
+      const calcOddO15 = Number(Math.max(1.06, config.exactO15 || (((1 / sharpGrid.pO15) / 1.065) * overEdge)).toFixed(2));
+      const calcOddO25 = Number(Math.max(1.10, config.exactPlayO25 || (((1 / sharpGrid.pO25) / 1.062) * overEdge)).toFixed(2));
+      const calcOddU35 = Number(Math.max(1.10, config.exactPlayU35 || (((1 / sharpGrid.pU35) / 1.060) * underEdge)).toFixed(2));
+      const calcOddBTTS = Number(Math.max(1.20, config.exactBTTS || (((1 / sharpGrid.pBTTS) / 1.068) * overEdge)).toFixed(2));
 
       return {
         xgHome,
         xgAway,
         smartDelta1,
         smartDelta2,
-        bookieLabel: config.bookieLabel || 'Tipico / EU vs. Pinnacle',
+        bookieLabel: config.bookieLabel || 'Tipico-Kalibrierung vs. Pinnacle',
         actualScore: config.actualScore || null,
         odds: {
           '1': Number(play1.toFixed(2)),
@@ -585,15 +582,12 @@
       };
     }
 
-    // ============================================================================
-    // DER EHRLICHE 8-SPIELE-MINENFELD-BACKTEST (INKL. REAL, MAN CITY & STUTTGART FALLEN!)
-    // ============================================================================
     function getHistoricalBacktestMatches() {
       const rawHistory = [
         {
           id: 'bt1',
           league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Realer Test)',
+          leagueLabel: '🏆 Champions League (Backtest)',
           dayOffset: 0,
           timeLabel: 'Endstand: 1:3 ✅',
           home: 'ŠK Slovan Bratislava',
@@ -621,7 +615,7 @@
         {
           id: 'bt2',
           league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Realer Test)',
+          leagueLabel: '🏆 Champions League (Backtest)',
           dayOffset: 0,
           timeLabel: 'Endstand: 1:0 ✅',
           home: 'Bayer 04 Leverkusen',
@@ -649,7 +643,7 @@
         {
           id: 'bt3',
           league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Realer Test)',
+          leagueLabel: '🏆 Champions League (Backtest)',
           dayOffset: 0,
           timeLabel: 'Endstand: 1:0 ✅',
           home: 'FC Bayern München',
@@ -677,7 +671,7 @@
         {
           id: 'bt4',
           league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Realer Test)',
+          leagueLabel: '🏆 Champions League (Backtest)',
           dayOffset: 0,
           timeLabel: 'Endstand: 2:3 ✅',
           home: 'Borussia Dortmund',
@@ -691,7 +685,7 @@
         {
           id: 'bt5',
           league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Realer Test)',
+          leagueLabel: '🏆 Champions League (Backtest)',
           dayOffset: 0,
           timeLabel: 'Endstand: 0:1 ✅',
           home: 'RB Leipzig',
@@ -711,6 +705,7 @@
           league: item.league,
           leagueLabel: item.leagueLabel,
           dayOffset: item.dayOffset,
+          commenceMs: null,
           timeLabel: item.timeLabel,
           home: item.home,
           away: item.away,
@@ -727,7 +722,7 @@
 
     let matches = [];
     try {
-      const saved = JSON.parse(localStorage.getItem('tb_matches_v40_ult'));
+      const saved = JSON.parse(localStorage.getItem('tb_matches_v41'));
       if (Array.isArray(saved) && saved.length > 0 && saved[0].odds && saved[0].odds['U35']) {
         matches = saved;
       } else {
@@ -735,6 +730,34 @@
       }
     } catch (e) {
       matches = getHistoricalBacktestMatches();
+    }
+
+    // Formatiert die verbleibende Zeit bis zum Anpfiff (und erkennt abgelaufene Spiele)
+    function formatUpcomingTimeLabel(commenceMs, fallbackLabel) {
+      if (!commenceMs) return fallbackLabel;
+      const nowMs = Date.now();
+      const diffMin = Math.round((commenceMs - nowMs) / 60000);
+      const start = new Date(commenceMs);
+      const clockStr = start.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+
+      if (diffMin <= 0) return '🔴 BEREITS GESTARTET';
+      if (diffMin <= 90) return `⏳ Startet in ${diffMin} Min. (${clockStr})`;
+      if (diffMin <= 18 * 60 && start.getDate() === new Date(nowMs).getDate()) {
+        return `Heute, ${clockStr}`;
+      }
+      const dayStr = start.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
+      return `${dayStr}, ${clockStr}`;
+    }
+
+    // Entfernt sofort alle Spiele aus der Liste, die bereits angepfiffen wurden!
+    function purgeStartedMatches() {
+      const nowMs = Date.now();
+      const beforeCount = matches.length;
+      matches = matches.filter(m => !m.commenceMs || m.commenceMs > nowMs + 60000);
+      if (matches.length !== beforeCount) {
+        saveMatches();
+      }
+      recalculateAll();
     }
 
     function evaluateBetOutcome(marketKey, score) {
@@ -755,9 +778,6 @@
       }
     }
 
-    // ============================================================================
-    // DIE 5 GESETZE IN DER ANALYSE: FALLEN-DETEKTOR, HARMONISCHE TORE & MIN-QUOTE
-    // ============================================================================
     function analyzeMatchPoisson(m) {
       const grid = computeDixonColesGrid(m.xgHome, m.xgAway);
       const isAwayFav = (m.odds['2'] < m.odds['1']);
@@ -769,10 +789,7 @@
       const favXg = Math.max(m.xgHome, m.xgAway);
       const dogXg = Math.min(m.xgHome, m.xgAway);
 
-      // GESETZ 3: Harmonischer Tor-Stabilitäts-Index (verhindert einseitige BTTS & Over-Fallen)
       const harmonicGoalIndex = (2 * m.xgHome * m.xgAway) / (totalXg || 1);
-
-      // GESETZ 2: Favoriten-Fallen-Erkennung (Reverse Steam / Public Bias)
       const favSmartDelta = isAwayFav ? (m.smartDelta2 || 0) : (m.smartDelta1 || 0);
       const isPublicFavTrap = (favSmartDelta < -0.015) || (dogXg >= 1.15 && m.odds[favWinKey] < 1.80);
 
@@ -784,7 +801,6 @@
       };
 
       if (isPublicFavTrap) {
-        // Favorit schwächelt bei Pinnacle oder Außenseiter ist brandgefährlich!
         blockedKeys.push(favWinKey, dnbKey);
         if (totalXg >= 2.85 && harmonicGoalIndex >= 1.25) {
           preferredKeys.push('O25', 'O15', 'BTTS');
@@ -855,7 +871,6 @@
       activeKeys.forEach(k => {
         const odd = parseFloat(m.odds?.[k]) || 1.50;
         const prob = allProbs[k];
-        // GESETZ 1 & 5: Effektiver Erwartungswert (inkl. Steuer-Option) & Faire Mindest-Quote für Tipico!
         const effectiveOdd = odd * taxFactor;
         const ev = (prob * effectiveOdd) - 1;
         const minPlayableOdd = (1 / prob) / taxFactor;
@@ -1063,18 +1078,32 @@
       recalculateAll();
     }
 
+    // ============================================================================
+    // V4.1 STRIKTER PRE-MATCH FILTER: KEINE LAUFENDEN SPIELE MEHR!
+    // ============================================================================
     function getFilteredMatches() {
       const league = document.getElementById('leagueSelect').value;
+      const nowMs = Date.now();
+      const maxFutureMs = nowMs + currentTimeframe * 24 * 60 * 60 * 1000;
+
       return matches.filter(m => {
         const leagueOk = (league === 'all') || (m.league === league);
+        if (!leagueOk) return false;
+
+        // Hat das Spiel einen echten Anpfiff-Zeitstempel (Live-API)?
+        if (m.commenceMs) {
+          // 1. STRIKTES VERBOT FÜR LAUFENDE ODER ABGELAUFENE SPIELE (Anpfiff muss in der Zukunft liegen!)
+          if (m.commenceMs <= nowMs + 60 * 1000) return false;
+          // 2. Muss innerhalb des gewählten Zeitfensters (24h / 3 Tage / 7 Tage) liegen
+          return m.commenceMs <= maxFutureMs;
+        }
+
+        // Fallback für Backtest- oder manuell angelegte Spiele
         const timeOk = (m.dayOffset || 0) < currentTimeframe;
-        return leagueOk && timeOk;
+        return timeOk;
       });
     }
 
-    // ============================================================================
-    // BOOKIE-BEATER SCORING (BESTRAFT FALLEN UND BELOHNT ECHTEN +EV & HIT-RATE)
-    // ============================================================================
     function scoreMarketCandidate(mk, mode, isPublicFavTrap) {
       const tacticsBonus = mk.isPreferred ? 0.05 : (mk.isBlocked ? -0.60 : 0);
       const trapPenalty = isPublicFavTrap ? -0.12 : 0;
@@ -1101,9 +1130,12 @@
       if (visibleMatches.length === 0) {
         container.innerHTML = `
           <div class="card-panel rounded-2xl p-6 text-center border border-white/10">
-            <p class="text-sm font-bold text-white mb-1">Keine Spiele in diesem Filter.</p>
-            <p class="text-xs text-slate-400 mb-4">Tippe auf „Alle Ligen scannen“ oder schalte auf „7 Tage“ um.</p>
-            <button type="button" onclick="document.getElementById('leagueSelect').value='all';setTimeframe(7);" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-extrabold">Alle Spiele anzeigen</button>
+            <p class="text-sm font-bold text-white mb-1">Keine anstehenden Spiele in diesem Zeitraum.</p>
+            <p class="text-xs text-slate-400 mb-4">Bereits laufende Spiele wurden automatisch ausgeblendet. Schalte auf „3 Tage“ / „7 Tage“ oder starte den Live-Scan!</p>
+            <div class="flex justify-center gap-2">
+              <button type="button" onclick="document.getElementById('leagueSelect').value='all';setTimeframe(7);" class="px-4 py-2.5 rounded-xl bg-slate-800 text-white text-xs font-extrabold">Auf 7 Tage schalten</button>
+              <button type="button" onclick="fetchLiveOdds(true)" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-extrabold">🚀 Alle Ligen scannen</button>
+            </div>
           </div>`;
         renderSlip([]);
         return;
@@ -1118,12 +1150,12 @@
 
           let pool = [];
           if (currentMode === 'safe') {
-            pool = validCandidates.filter(mk => mk.prob >= 0.67 && mk.odd >= 1.18 && mk.odd <= 1.72);
+            pool = validCandidates.filter(mk => mk.prob >= 0.67 && mk.odd >= 1.16 && mk.odd <= 1.72);
             if (pool.length === 0) pool = validCandidates.filter(mk => mk.prob >= 0.60);
           } else if (currentMode === 'value') {
-            pool = validCandidates.filter(mk => mk.prob >= 0.56 && mk.odd >= 1.25 && mk.odd <= 2.25);
+            pool = validCandidates.filter(mk => mk.prob >= 0.55 && mk.odd >= 1.25 && mk.odd <= 2.25);
           } else {
-            pool = validCandidates.filter(mk => mk.prob >= 0.50 && mk.odd >= 1.42 && mk.odd <= 2.50);
+            pool = validCandidates.filter(mk => mk.prob >= 0.50 && mk.odd >= 1.40 && mk.odd <= 2.50);
           }
           if (pool.length === 0) pool = validCandidates;
 
@@ -1143,13 +1175,14 @@
         const borderClass = isPublicFavTrap
           ? 'border-rose-500/45'
           : (hasPosEv ? 'border-emerald-500/50' : 'border-white/10');
+        const dynamicTime = formatUpcomingTimeLabel(match.commenceMs, match.timeLabel);
 
         return `
           <div class="card-panel rounded-2xl p-4 border ${borderClass}">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
               <div class="flex flex-wrap items-center gap-1.5">
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-white/10">${match.leagueLabel}</span>
-                <span class="text-[11px] font-bold ${match.actualScore ? 'text-amber-300' : 'text-slate-400'}">${match.timeLabel}</span>
+                <span class="text-[11px] font-extrabold ${match.commenceMs ? 'text-emerald-400' : 'text-amber-300'}">${dynamicTime}</span>
                 <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${archetype.color}">${archetype.name}</span>
               </div>
               <div class="flex items-center gap-1.5 text-[11px]">
@@ -1205,7 +1238,6 @@
         `;
       }).join('');
 
-      // GESETZ 4: Disziplinierte Schein-Größe (Keine Fallen-Spiele auf den Schein lassen!)
       const safeForSlipPool = enriched.filter(item => !item.isPublicFavTrap || lockedPicks[item.match.id]);
       const finalPool = safeForSlipPool.length >= 2 ? safeForSlipPool : enriched;
 
@@ -1226,7 +1258,7 @@
       const btBox = document.getElementById('slipBacktestBox');
 
       if (slipItems.length === 0) {
-        picksEl.innerHTML = `<p class="text-xs text-slate-400 py-3 text-center">Keine Spiele im Zeitfenster.</p>`;
+        picksEl.innerHTML = `<p class="text-xs text-slate-400 py-3 text-center">Keine anstehenden Spiele im Zeitfenster.</p>`;
         btBox.classList.add('hidden');
         return;
       }
@@ -1241,6 +1273,7 @@
         combinedProb *= bestPick.prob;
         const evPct = (bestPick.ev * 100).toFixed(1);
         const evCol = bestPick.ev >= 0 ? 'text-emerald-400 font-bold' : 'text-slate-400';
+        const dynamicTime = formatUpcomingTimeLabel(match.commenceMs, match.timeLabel);
 
         let statusHtml = '';
         if (bestPick.outcome) {
@@ -1254,6 +1287,7 @@
           }
         } else {
           allHaveScores = false;
+          statusHtml = `<div class="text-[10px] text-slate-400 mt-0.5">⏰ ${dynamicTime}</div>`;
         }
 
         return `
@@ -1277,11 +1311,10 @@
       const effectiveCombinedOdds = combinedOdds * taxFactor;
       const bankroll = parseFloat(document.getElementById('bankrollInput').value) || 50;
 
-      // Dynamisches Fractional-Kelly Bankroll-Management
       const edge = (combinedProb * effectiveCombinedOdds) - 1;
       let stakePct = currentMode === 'safe' ? 0.05 : (currentMode === 'value' ? 0.04 : 0.025);
       if (edge > 0.02 && effectiveCombinedOdds > 1.2) {
-        const kellyFraction = (edge / (effectiveCombinedOdds - 1)) * 0.35; // 35% Fractional Kelly
+        const kellyFraction = (edge / (effectiveCombinedOdds - 1)) * 0.35;
         stakePct = Math.min(0.08, Math.max(stakePct, kellyFraction));
       }
 
@@ -1319,7 +1352,7 @@
     }
 
     // ============================================================================
-    // LIVE ODDS API PARSER (INKL. SPREADS / DRAW NO BET & PUBLIC-TRAP-RADAR)
+    // LIVE ODDS API PARSER V4.1: NUR KOMMENDE SPIELE + REALISTISCHE TIPICO-QUOTEN
     // ============================================================================
     function extractTotalsFromBm(bm) {
       const m = bm?.markets?.find(x => x.key === 'totals');
@@ -1352,20 +1385,32 @@
     }
 
     function parseApiMatchItem(item, sportKey, leagueTitle, now, idx) {
+      // 1. STRIKTER ZEIT-CHECK: Wenn das Spiel schon läuft oder vorbei ist -> SOFORT IGNORIEREN!
+      const start = new Date(item.commence_time);
+      const commenceMs = start.getTime();
+      if (isNaN(commenceMs) || commenceMs <= now.getTime() + 60 * 1000) {
+        return null;
+      }
+
       const bms = item.bookmakers || [];
       if (bms.length === 0) return null;
 
-      // 1. Schärfster Buchmacher (Pinnacle) als Wahrheits-Anker
+      // 2. Schärfster Buchmacher (Pinnacle) als Wahrheits-Anker
       let sharpBm = bms.find(b => b.key.includes('pinnacle')) || bms.find(b => b.key.includes('betfair')) || bms.find(b => b.key.includes('marathon')) || bms[0];
 
-      // 2. Tipico oder führender deutscher/EU Soft-Buchmacher
-      const softPriority = ['tipico_de', 'tipico', 'bwin', 'bet365', 'interwetten', 'unibet_eu', 'unibet', 'williamhill'];
-      let playBm = null;
-      for (const key of softPriority) {
-        const found = bms.find(b => b.key.toLowerCase().includes(key));
-        if (found) { playBm = found; break; }
+      // 3. Echter Tipico- / DACH-Buchmacher-Filter (SCHLIESST Wettbörsen & 1xBet strikt aus!)
+      const tipicoBm = bms.find(b => b.key.toLowerCase().includes('tipico'));
+      const dachPriority = ['tipico_de', 'tipico', 'bwin', 'interwetten', 'bet365', 'unibet_eu', 'unibet', 'sport888', 'williamhill', 'betclic'];
+      let playBm = tipicoBm;
+      if (!playBm) {
+        for (const key of dachPriority) {
+          const found = bms.find(b => b.key.toLowerCase().includes(key));
+          if (found) { playBm = found; break; }
+        }
       }
-      if (!playBm) playBm = bms.find(b => b.key !== sharpBm.key) || sharpBm;
+      if (!playBm) {
+        playBm = bms.find(b => !b.key.includes('pinnacle') && !b.key.includes('betfair') && !b.key.includes('onexbet') && !b.key.includes('marathon')) || sharpBm;
+      }
 
       const sharpH2h = sharpBm.markets?.find(m => m.key === 'h2h');
       const s1 = sharpH2h?.outcomes?.find(o => o.name === item.home_team)?.price || 2.00;
@@ -1377,18 +1422,23 @@
       let odd2 = playH2h?.outcomes?.find(o => o.name === item.away_team)?.price || s2;
       let oddX = playH2h?.outcomes?.find(o => o.name === 'Draw')?.price || sX;
 
-      // Berechne zusätzlich den Durchschnitt aller Freizeit-Buchmacher (Public Consensus), um Public Traps zu entlarven!
-      let sum1 = 0, sum2 = 0, cnt = 0;
-      bms.forEach(b => {
-        if (b.key === sharpBm.key && bms.length > 1) return;
-        const mh = b.markets?.find(m => m.key === 'h2h');
-        const p1 = mh?.outcomes?.find(o => o.name === item.home_team)?.price;
-        const p2 = mh?.outcomes?.find(o => o.name === item.away_team)?.price;
-        if (p1 && p2) { sum1 += p1; sum2 += p2; cnt++; }
-      });
+      // Falls kein Original-Tipico im Feed war und der Ersatz-Bookie eine zu niedrige Marge (< 4.5%) hat,
+      // normieren wir die Hauptquoten exakt auf den echten Tipico-Auszahlungsschlüssel (94.8% / Overround 1.055)!
+      if (!tipicoBm) {
+        const rawOverround = (1 / odd1) + (1 / oddX) + (1 / odd2);
+        const targetTipicoOverround = 1.055;
+        if (rawOverround < 1.042) {
+          const scale = rawOverround / targetTipicoOverround;
+          odd1 = Number((odd1 * scale).toFixed(2));
+          oddX = Number((oddX * scale).toFixed(2));
+          odd2 = Number((odd2 * scale).toFixed(2));
+        }
+      }
 
+      // Suche nach einer echten 2.5-Tore-Linie (bevorzugt von Tipico / DACH-Bookie)
       let exact25Data = null;
       for (const b of [playBm, sharpBm, ...bms]) {
+        if (b.key.includes('betfair') || b.key.includes('onexbet')) continue;
         const t = extractTotalsFromBm(b);
         if (t && Math.abs(t.point - 2.5) < 0.08) {
           exact25Data = t;
@@ -1399,7 +1449,6 @@
       const sharpTotals = extractTotalsFromBm(sharpBm) || exact25Data;
       const playTotals = extractTotalsFromBm(playBm);
       const spreadData = {
-        ...extractSpreadsFromBm(sharpBm, item.home_team, item.away_team),
         ...extractSpreadsFromBm(playBm, item.home_team, item.away_team)
       };
 
@@ -1412,17 +1461,20 @@
         exactPlayO25 = playTotals.overPrice;
         exactPlayU25 = playTotals.underPrice;
       } else if (exact25Data) {
-        exactPlayO25 = exact25Data.overPrice;
-        exactPlayU25 = exact25Data.underPrice;
+        // Normiere auch die 2.5-Tore-Quote auf echte Tipico-Marge, falls sie von einem Scharf-Bookie stammt
+        const totOverround = exact25Data.underPrice ? ((1 / exact25Data.overPrice) + (1 / exact25Data.underPrice)) : 1.05;
+        const totScale = totOverround < 1.045 ? (totOverround / 1.062) : 1.0;
+        exactPlayO25 = Number((exact25Data.overPrice * totScale).toFixed(2));
+        if (exact25Data.underPrice) exactPlayU25 = Number((exact25Data.underPrice * totScale).toFixed(2));
       }
       if (playTotals && Math.abs(playTotals.point - 3.5) < 0.08 && playTotals.underPrice) {
         exactPlayU35 = playTotals.underPrice;
       }
 
-      const lineInfo = sharpTotals ? `Linie ${sharpTotals.point}` : '1X2';
-      let bookieLabel = `${playBm.title || 'Tipico/EU'} vs. ${sharpBm.title || 'Pinnacle'} (${lineInfo})`;
-      if (odd1 > s1 * 1.03 || odd2 > s2 * 1.03) {
-        bookieLabel = `🔥 SMART MONEY: ${playBm.title || 'EU-Bookie'} zahlt mehr als ${sharpBm.title || 'Pinnacle'}!`;
+      const sourceTitle = tipicoBm ? '🎯 Original Tipico DE' : `📊 ${playBm.title || 'EU-Bookie'} (Tipico-Norm)`;
+      let bookieLabel = `${sourceTitle} vs. ${sharpBm.title || 'Pinnacle'}`;
+      if (odd1 > s1 * 1.02 || odd2 > s2 * 1.02) {
+        bookieLabel = `🔥 QUOTEN-FEHLER: ${sourceTitle} zahlt mehr als ${sharpBm.title || 'Pinnacle'}!`;
       }
 
       const calc = buildSharpVsSoftMatch({
@@ -1434,15 +1486,15 @@
         bookieLabel
       });
 
-      const start = new Date(item.commence_time);
-      const diffDays = Math.max(0, Math.floor((start - now) / (1000 * 60 * 60 * 24)));
+      const diffDays = Math.max(0, Math.floor((commenceMs - now.getTime()) / (1000 * 60 * 60 * 24)));
 
       return {
-        id: 'live_' + sportKey + '_' + idx + '_' + Date.now(),
+        id: 'live_' + sportKey + '_' + idx + '_' + commenceMs,
         league: sportKey,
         leagueLabel: leagueTitle || item.sport_title || 'Top-Liga',
         dayOffset: diffDays,
-        timeLabel: start.toLocaleString('de-DE', { weekday: 'short', hour: '2-digit', minute: '2-digit' }) + ' Uhr',
+        commenceMs,
+        timeLabel: formatUpcomingTimeLabel(commenceMs, ''),
         home: item.home_team,
         away: item.away_team,
         bookieLabel: calc.bookieLabel,
@@ -1464,10 +1516,14 @@
 
       const btn = document.getElementById(multiLeagueScan ? 'multiScanBtn' : 'fetchBtn');
       const origText = btn.innerHTML;
-      btn.innerHTML = `<span>⏳ Scanne Pinnacle vs. Soft...</span>`;
+      btn.innerHTML = `<span>⏳ Lade anstehende Spiele...</span>`;
 
       try {
         const now = new Date();
+        // WICHTIG: commenceTimeFrom = Jetzt + 2 Minuten! Damit schickt die API garantiert KEINE laufenden Spiele mehr!
+        const fromDate = new Date(now.getTime() + 2 * 60 * 1000);
+        const commenceTimeFrom = fromDate.toISOString().split('.')[0] + 'Z';
+
         const scanDays = multiLeagueScan ? Math.max(3, currentTimeframe) : currentTimeframe;
         if (multiLeagueScan && currentTimeframe < 3) setTimeframe(3);
 
@@ -1488,13 +1544,12 @@
 
         let collected = [];
         for (const lg of leaguesToScan) {
-          // Ruft h2h, spreads (Draw No Bet / Asian Handicap) UND totals gleichzeitig ab!
-          const url = `https://api.the-odds-api.com/v4/sports/${lg.key}/odds/?apiKey=${apiKey}&regions=eu&markets=h2h,spreads,totals&commenceTimeTo=${commenceTimeTo}`;
+          const url = `https://api.the-odds-api.com/v4/sports/${lg.key}/odds/?apiKey=${apiKey}&regions=eu&markets=h2h,spreads,totals&commenceTimeFrom=${commenceTimeFrom}&commenceTimeTo=${commenceTimeTo}`;
           const res = await fetch(url);
           if (res.ok) {
             const data = await res.json();
             if (Array.isArray(data)) {
-              data.slice(0, 10).forEach((item, idx) => {
+              data.slice(0, 12).forEach((item, idx) => {
                 const parsed = parseApiMatchItem(item, lg.key, lg.label, now, idx);
                 if (parsed) collected.push(parsed);
               });
@@ -1508,10 +1563,10 @@
           lockedPicks = {};
           saveMatches();
           recalculateAll();
-          btn.innerHTML = `<span>✅ ${collected.length} Spiele geladen!</span>`;
+          btn.innerHTML = `<span>✅ ${collected.length} anstehende Spiele!</span>`;
         } else {
           setTimeframe(7);
-          btn.innerHTML = `<span>Keine Spiele -> 7 Tage aktiv</span>`;
+          btn.innerHTML = `<span>Keine heute -> 7 Tage aktiv</span>`;
         }
       } catch (e) {
         togglePanel('apiDrawer');
@@ -1524,7 +1579,7 @@
     }
 
     function loadHistoricalBacktest() {
-      localStorage.removeItem('tb_matches_v40_ult');
+      localStorage.removeItem('tb_matches_v41');
       lockedPicks = {};
       document.getElementById('leagueSelect').value = 'all';
       matches = getHistoricalBacktestMatches();
@@ -1551,7 +1606,8 @@
         league: document.getElementById('leagueSelect').value === 'all' ? 'soccer_uefa_champs_league' : document.getElementById('leagueSelect').value,
         leagueLabel: '🔥 Eigene Tipico-Analyse',
         dayOffset: 0,
-        timeLabel: 'Heute, Live',
+        commenceMs: Date.now() + 2 * 60 * 60 * 1000,
+        timeLabel: 'Heute, Anstehend',
         home,
         away,
         bookieLabel: calc.bookieLabel,
@@ -1568,7 +1624,7 @@
     }
 
     function saveMatches() {
-      localStorage.setItem('tb_matches_v40_ult', JSON.stringify(matches));
+      localStorage.setItem('tb_matches_v41', JSON.stringify(matches));
     }
 
     function copyTicketToClipboard() {
@@ -1577,7 +1633,7 @@
       const stake = document.getElementById('slipStake').textContent;
       const win = document.getElementById('slipPotentialWin').textContent;
       const ev = document.getElementById('slipEvBadge').textContent;
-      const text = `⚔️ TIPPICO BRUDER V4.0 ULTIMATE ⚔️\nEffektive Quote: ${odds} | Trefferchance: ${prob}\n${ev}\nEinsatz: ${stake} -> Möglicher Gewinn: ${win}`;
+      const text = `⏱️ TIPPICO BRUDER V4.1 SCHEIN ⏱️\nEffektive Quote: ${odds} | Trefferchance: ${prob}\n${ev}\nEinsatz: ${stake} -> Möglicher Gewinn: ${win}`;
       if (navigator.clipboard) {
         navigator.clipboard.writeText(text);
       }
@@ -1588,9 +1644,10 @@
       }, 2000);
     }
 
-    // --- INIT ---
+    // --- INIT & AUTOMATISCHER 60-SEKUNDEN-CHECK GEGEN ANGEPFIFFENE SPIELE ---
     updateApiStatusUI();
-    recalculateAll();
+    purgeStartedMatches();
+    setInterval(purgeStartedMatches, 60000);
   </script>
 </body>
 </html>
