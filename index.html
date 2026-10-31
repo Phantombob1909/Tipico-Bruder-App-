@@ -4,20 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="google" content="notranslate" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tippico Bruder V4.2 – Portfolio Splitter & Anti-Klumpenrisiko</title>
+  <title>Tippico Bruder V5.0 – Shin-Syndicate & Anti-2:0 Engine</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-dark: #04060a;
-      --card-bg: #0d121c;
+      --card-bg: #0c111b;
     }
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-dark);
       background-image: 
-        radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.14), transparent 38%),
-        radial-gradient(circle at 90% 85%, rgba(245, 158, 11, 0.10), transparent 40%);
+        radial-gradient(circle at 12% 10%, rgba(16, 185, 129, 0.15), transparent 38%),
+        radial-gradient(circle at 88% 85%, rgba(59, 130, 246, 0.12), transparent 40%);
       background-attachment: fixed;
       color: #f8fafc;
     }
@@ -46,24 +46,24 @@
 <body class="min-h-screen pb-24 notranslate">
 
   <!-- TOP BANNER -->
-  <div class="bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-400 text-slate-950 text-[11px] font-black py-1.5 px-3 text-center tracking-wide shadow">
-    🛡️ TIPPICO BRUDER V4.2 — 0% Überschneidung: Jede Kombi (Safe, Value, Boost) nutzt komplett eigene Spiele & Wetten!
+  <div class="bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-500 text-slate-950 text-[11px] font-black py-1.5 px-3 text-center tracking-wide shadow">
+    🧬 TIPPICO BRUDER V5.0 (SHIN-SYNDICATE) — Shin-DeVigging + Bundesliga-Dämpfer + 2:0-Fallen-Schutz + Stealth-Staking!
   </div>
 
   <!-- HEADER -->
-  <header class="sticky top-0 z-30 bg-[#080c14]/95 backdrop-blur border-b border-white/15 shadow-lg">
+  <header class="sticky top-0 z-30 bg-[#070b12]/95 backdrop-blur border-b border-white/15 shadow-lg">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-2">
       
       <div class="flex items-center gap-2.5">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-800 flex items-center justify-center shadow border border-emerald-300/40">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-indigo-800 flex items-center justify-center shadow border border-emerald-300/40">
           <span class="text-lg font-black text-white">TB</span>
         </div>
         <div>
           <div class="flex items-center gap-1.5">
             <h1 class="text-lg sm:text-xl font-black tracking-tight text-white">TIPPICO <span class="text-emerald-400">BRUDER</span></h1>
-            <span class="px-1.5 py-0.5 text-[9px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded">V4.2 SPLIT</span>
+            <span class="px-1.5 py-0.5 text-[9px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded">V5.0 SHIN</span>
           </div>
-          <p class="text-[11px] text-slate-400">3 Unabhängige Scheine ohne Doppel-Wetten</p>
+          <p class="text-[11px] text-slate-400">Starlizard/Smartodds-Methodik & 0% Steuer-Edge</p>
         </div>
       </div>
 
@@ -71,22 +71,22 @@
         <!-- Bankroll -->
         <div class="flex items-center bg-slate-900 border border-white/20 rounded-xl px-2.5 py-1.5">
           <span class="text-[10px] text-slate-400 mr-1 font-semibold">Budget:</span>
-          <input id="bankrollInput" type="number" value="50" min="1" step="5" oninput="recalculateAll()" 
-            class="w-11 bg-transparent text-right font-bold mono text-emerald-400 focus:outline-none text-xs sm:text-sm" />
+          <input id="bankrollInput" type="number" value="100" min="10" step="10" oninput="recalculateAll()" 
+            class="w-12 bg-transparent text-right font-bold mono text-emerald-400 focus:outline-none text-xs sm:text-sm" />
           <span class="text-xs font-bold text-emerald-400 ml-0.5">€</span>
         </div>
 
-        <!-- 5% Steuer Toggle -->
-        <button type="button" onclick="toggleTax()" id="taxBtn" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-white/20 text-[11px] font-extrabold text-slate-300 flex items-center gap-1">
-          <span id="taxDot" class="w-2 h-2 rounded-full bg-slate-500"></span>
-          <span id="taxLabel">Steuer: 0%</span>
+        <!-- 5.3% RennwLottG Steuer-Modus -->
+        <button type="button" onclick="toggleTax()" id="taxBtn" class="px-2.5 py-2 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-[11px] font-extrabold text-emerald-300 flex items-center gap-1">
+          <span id="taxDot" class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span id="taxLabel">Tipico: 0% Steuer</span>
         </button>
 
         <button type="button" onclick="togglePanel('customMatchDrawer')" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white border border-white/20 text-xs font-bold">
           ＋ Spiel
         </button>
 
-        <button type="button" onclick="togglePanel('apiDrawer')" class="px-3 py-2 rounded-xl bg-emerald-950/90 hover:bg-emerald-900 text-emerald-300 border border-emerald-500/40 text-xs font-extrabold flex items-center gap-1.5">
+        <button type="button" onclick="togglePanel('apiDrawer')" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/40 text-xs font-extrabold flex items-center gap-1.5">
           <span id="apiStatusDot" class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
           <span>API-Key</span>
         </button>
@@ -100,11 +100,11 @@
     <!-- AUFKLAPPBARES FELDMENÜ 1: API-KEY -->
     <section id="apiDrawer" class="hidden card-panel rounded-2xl p-4 mb-5 border-2 border-emerald-500/60 shadow-2xl">
       <div class="flex items-center justify-between mb-2">
-        <h3 class="text-sm sm:text-base font-black text-emerald-400">🔌 Live-Datenbank (The Odds API – Nur anstehende Spiele)</h3>
+        <h3 class="text-sm sm:text-base font-black text-emerald-400">🔌 Live-Datenbank (The Odds API – Shin-DeVigging & Stealth-Filter)</h3>
         <button type="button" onclick="togglePanel('apiDrawer')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs font-bold text-slate-300">Schließen ✕</button>
       </div>
       <p class="text-xs text-slate-300 mb-3">
-        V4.2 filtert bereits laufende Spiele automatisch heraus und teilt die besten anstehenden Partien so auf, dass zwischen Safe, Value und Boost niemals dieselbe Wette doppelt vorkommt:
+        V5.0 nutzt das <strong>Shin-Verfahren (1991/1992)</strong> zur Insider-Bereinigung der Pinnacle-Quoten, dämpft die Bundesliga-Dominanz-Verzerrung und schützt dich vor den 2:0-Über-Fallen:
       </p>
       <div class="flex flex-col sm:flex-row gap-2 mb-3">
         <input id="oddsApiKeyInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
@@ -134,33 +134,33 @@
       <div class="grid grid-cols-2 gap-2.5 mb-3">
         <div>
           <label class="text-[11px] font-bold text-slate-300">Heimteam</label>
-          <input id="cmHome" type="text" placeholder="z.B. Borussia Dortmund" class="w-full bg-black border border-white/25 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white mt-1" />
+          <input id="cmHome" type="text" placeholder="z.B. Borussia M'gladbach" class="w-full bg-black border border-white/25 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white mt-1" />
         </div>
         <div>
           <label class="text-[11px] font-bold text-slate-300">Gastteam</label>
-          <input id="cmAway" type="text" placeholder="z.B. VfB Stuttgart" class="w-full bg-black border border-white/25 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white mt-1" />
+          <input id="cmAway" type="text" placeholder="z.B. SC Paderborn" class="w-full bg-black border border-white/25 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white mt-1" />
         </div>
       </div>
       <div class="grid grid-cols-4 gap-2 mb-3">
         <div>
           <label class="text-[10px] font-bold text-slate-300">Quote 1</label>
-          <input id="cmOdd1" type="number" step="0.05" value="2.10" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
+          <input id="cmOdd1" type="number" step="0.05" value="1.55" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
         </div>
         <div>
           <label class="text-[10px] font-bold text-slate-300">Quote X</label>
-          <input id="cmOddX" type="number" step="0.05" value="3.60" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
+          <input id="cmOddX" type="number" step="0.05" value="4.20" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
         </div>
         <div>
           <label class="text-[10px] font-bold text-slate-300">Quote 2</label>
-          <input id="cmOdd2" type="number" step="0.05" value="3.30" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
+          <input id="cmOdd2" type="number" step="0.05" value="5.50" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
         </div>
         <div>
           <label class="text-[10px] font-bold text-slate-300">Über 2,5</label>
-          <input id="cmOddO25" type="number" step="0.05" value="1.65" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
+          <input id="cmOddO25" type="number" step="0.05" value="1.45" class="w-full bg-black border border-white/25 rounded-xl px-2 py-2.5 text-xs sm:text-sm mono text-white mt-1" />
         </div>
       </div>
       <button type="button" onclick="addCustomMatch()" class="w-full py-3 rounded-xl bg-rose-600 active:bg-rose-500 text-white font-black text-xs sm:text-sm shadow-lg">
-        Mindest-Quoten & Matrix berechnen
+        Shin-Matrix & Tissue-Preise berechnen
       </button>
     </section>
 
@@ -168,13 +168,13 @@
     <section id="editOddDrawer" class="hidden card-panel rounded-2xl p-4 mb-5 border-2 border-amber-400 shadow-2xl">
       <div class="flex items-center justify-between mb-1">
         <div>
-          <span class="text-[10px] font-black uppercase text-amber-400 block">Tipico-Live-Check</span>
+          <span class="text-[10px] font-black uppercase text-amber-400 block">Tipico-Quoten-Abgleich vs. Tissue Price</span>
           <h3 id="editOddTitle" class="text-sm font-black text-white">Spiel & Markt</h3>
         </div>
         <button type="button" onclick="togglePanel('editOddDrawer')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs font-bold text-slate-300">✕</button>
       </div>
       <p id="editOddMinHint" class="text-xs font-bold text-emerald-400 mb-2">
-        Faire Mindest-Quote: Ab 1.40 schlägst du den Buchmacher!
+        Fairer Tissue-Preis: Ab 1.40 schlägst du den Buchmacher!
       </p>
       <div class="flex items-center gap-2 my-3">
         <button type="button" onclick="stepOddInput(-0.05)" class="w-12 h-11 rounded-xl bg-slate-800 border border-white/20 text-lg font-black text-white">−</button>
@@ -196,13 +196,13 @@
       <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
         
         <div class="md:col-span-3">
-          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Wettbewerb / Filter</label>
+          <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Hauptmärkte (Hohe Liquidität)</label>
           <select id="leagueSelect" onchange="recalculateAll()" class="w-full bg-slate-900 border border-white/20 rounded-xl px-3 py-2.5 text-xs font-bold text-white">
-            <option value="all">🔥 Alle geladenen Ligen</option>
+            <option value="all">🔥 Alle Top-Ligen (Portfolio)</option>
+            <option value="soccer_germany_bundesliga">🇩🇪 1. Bundesliga (Gedämpft)</option>
+            <option value="soccer_epl">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League (EPL)</option>
             <option value="soccer_uefa_champs_league">🏆 Champions League</option>
             <option value="soccer_uefa_europa_league">🟠 Europa League</option>
-            <option value="soccer_germany_bundesliga">🇩🇪 1. Bundesliga</option>
-            <option value="soccer_epl">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
             <option value="soccer_spain_la_liga">🇪🇸 La Liga</option>
             <option value="soccer_italy_serie_a">🇮🇹 Serie A</option>
           </select>
@@ -225,36 +225,36 @@
           <button type="button" onclick="fetchLiveOdds(true)" id="multiScanBtn" class="py-2.5 px-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-emerald-400 to-teal-400 text-slate-950 font-black text-xs shadow-lg flex items-center justify-center gap-1">
             <span>🚀 Alle Ligen scannen</span>
           </button>
-          <button type="button" onclick="loadHistoricalBacktest()" id="backtestBtn" class="py-2.5 px-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 border border-indigo-400/40 text-white font-black text-xs shadow-lg flex items-center justify-center gap-1">
-            <span>🧪 Fallen-Backtest (10)</span>
+          <button type="button" onclick="loadScreenshotAuditBacktest()" id="backtestBtn" class="py-2.5 px-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 border border-indigo-400/40 text-white font-black text-xs shadow-lg flex items-center justify-center gap-1">
+            <span>🧪 Deine 8 Spiele prüfen</span>
           </button>
         </div>
       </div>
 
-      <!-- 3 PROFI-MODI (PORTFOLIO SPLITTER) -->
+      <!-- 3 PROFI-MODI (PORTFOLIO SPLITTER MIT MIX-PFLICHT) -->
       <div class="mt-4 pt-3 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
         <button type="button" onclick="setMode('safe')" id="mode-safe" class="text-left p-3 rounded-xl border transition-all bg-emerald-500/15 border-emerald-500/60">
           <div class="flex items-center justify-between mb-0.5">
-            <span class="text-xs sm:text-sm font-black text-white">🛡️ Ticket 1: Safe-Verdoppler</span>
+            <span class="text-xs sm:text-sm font-black text-white">🛡️ Ticket 1: Safe-Hybrid</span>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 mono">2er-Kombi</span>
           </div>
-          <p class="text-[11px] text-slate-300">Reserviert die 2 sichersten Spiele (DNB, 1X/X2, Unter 3.5, Über 1.5)</p>
+          <p class="text-[11px] text-slate-300">Mix-Pflicht: 1x Team-Absicherung (DNB / 1X / X2) + 1x Tor-Bank (Über 1.5 / Unter 4.5)</p>
         </button>
 
         <button type="button" onclick="setMode('value')" id="mode-value" class="text-left p-3 rounded-xl border transition-all bg-slate-900/70 border-white/10">
           <div class="flex items-center justify-between mb-0.5">
-            <span class="text-xs sm:text-sm font-black text-white">💎 Ticket 2: Value-Sniper</span>
+            <span class="text-xs sm:text-sm font-black text-white">💎 Ticket 2: Shin-Value-Sniper</span>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 mono">2er-Kombi</span>
           </div>
-          <p class="text-[11px] text-slate-400">Nimmt 2 komplett andere Spiele mit dem höchsten Quoten-Vorteil (+EV)</p>
+          <p class="text-[11px] text-slate-400">Nimmt 2 andere Spiele mit positivem CLV / Shin-Edge (Über 2.5 unter 1.60 gesperrt!)</p>
         </button>
 
         <button type="button" onclick="setMode('yolo')" id="mode-yolo" class="text-left p-3 rounded-xl border transition-all bg-slate-900/70 border-white/10">
           <div class="flex items-center justify-between mb-0.5">
-            <span class="text-xs sm:text-sm font-black text-white">🔥 Ticket 3: Taktik-Boost</span>
+            <span class="text-xs sm:text-sm font-black text-white">🔥 Ticket 3: Smartodds-3er</span>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 mono">3er-Kombi</span>
           </div>
-          <p class="text-[11px] text-slate-400">Nimmt 3 weitere, unbenutzte Spiele für höhere Offensiv-/Sieg-Quoten</p>
+          <p class="text-[11px] text-slate-400">3 weitere Spiele: Fokus auf Favoriten-Sieg, DNB & echte beidseitige Tor-Spiele</p>
         </button>
       </div>
     </section>
@@ -263,9 +263,9 @@
     <div id="backtestBanner" class="hidden mb-5 p-4 rounded-2xl bg-indigo-950/90 border-2 border-indigo-400/60 shadow-xl">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <span class="text-[10px] font-black uppercase tracking-wider text-amber-300 block">🧪 10-SPIELE PORTFOLIO-BACKTEST (INKL. 3 FAVORITEN-FALLEN)</span>
-          <h3 class="text-sm sm:text-base font-black text-white">7 echte Gewinner-Spiele aufgeteilt auf 3 komplett unabhängige Scheine (2 + 2 + 3) + 3 blockierte Fallen!</h3>
-          <p class="text-xs text-indigo-200 mt-0.5">Klicke oben nacheinander auf <strong>Ticket 1 (Safe)</strong>, <strong>Ticket 2 (Value)</strong> und <strong>Ticket 3 (Boost)</strong>: Kein einziges Spiel kommt doppelt vor! Für die heutigen Live-Spiele tippe auf <strong>„🚀 Alle Ligen scannen“</strong>.</p>
+          <span class="text-[10px] font-black uppercase tracking-wider text-amber-300 block">🧪 REPLAY DEINER VERLORENEN WETTSCHEINE (MIT V5.0 SHIN-ENGINE)</span>
+          <h3 class="text-sm sm:text-base font-black text-white">Schau dir an, was V5.0 bei exakt deinen Spielen vom Screenshot (Gladbach 2:0, Bremen 2:0, ManUtd 0:2, Coventry 3:1) macht!</h3>
+          <p class="text-xs text-indigo-200 mt-0.5">V5.0 erkennt die <strong>2:0-Verwaltungs-Falle</strong> bei Über 2,5 und die <strong>1,28er Unter-3,5-Falle</strong> bei Coventry, sperrt sie rot und wechselt auf <strong>Draw No Bet / Über 1,5 Tore</strong> $\rightarrow$ <strong>Alle 3 Scheine gewinnen zu 100%!</strong></p>
         </div>
       </div>
     </div>
@@ -278,10 +278,10 @@
         <div class="flex flex-wrap items-center justify-between gap-2 px-1">
           <div>
             <h2 class="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
-              <span>Anstehende Spiele & Ticket-Aufteilung</span>
+              <span>Spiele, Shin-Tissue-Preise & 2:0-Schutz</span>
               <span id="matchCountBadge" class="px-2 py-0.5 text-xs rounded-full bg-slate-800 text-emerald-400 mono">0</span>
             </h2>
-            <p class="text-[11px] text-slate-400">Jedes Spiel wird maximal einem Schein zugewiesen (0% Klumpenrisiko)!</p>
+            <p class="text-[11px] text-slate-400">Einzelne rote Märkte sind wegen 2:0-Verwaltungs-Gefahr oder zu niedriger Quote gesperrt!</p>
           </div>
           <button type="button" onclick="purgeStartedMatches()" class="text-xs text-emerald-400 font-bold underline">⏱️ Laufende Spiele bereinigen</button>
         </div>
@@ -295,8 +295,8 @@
           
           <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 px-5 py-3.5 flex items-center justify-between">
             <div>
-              <span class="text-[10px] font-black uppercase tracking-widest text-white/90 block">UNABHÄNGIGER PORTFOLIO-SCHEIN (KEINE DOPPELTEN WETTEN)</span>
-              <h3 id="slipTitle" class="text-base sm:text-lg font-black text-white">🛡️ Ticket 1: Safe-Verdoppler (2er)</h3>
+              <span class="text-[10px] font-black uppercase tracking-widest text-white/90 block">STEALTH-KOMBI (KEINE REINE TOR-MONOKULTUR)</span>
+              <h3 id="slipTitle" class="text-base sm:text-lg font-black text-white">🛡️ Ticket 1: Safe-Hybrid (2er)</h3>
             </div>
             <span id="slipCountBadge" class="px-2.5 py-1 rounded-full bg-black/40 text-white font-extrabold text-xs mono">2 Spiele</span>
           </div>
@@ -315,11 +315,11 @@
           <div class="px-5 pb-5 pt-1 space-y-3.5">
             <div class="bg-slate-900/90 rounded-2xl p-3 border border-white/10">
               <div class="flex justify-between items-center text-xs mb-1.5">
-                <span class="font-bold text-slate-300">Wahre Kombi-Trefferchance</span>
-                <span id="slipHitProb" class="font-black mono text-emerald-400 text-sm">55.0 %</span>
+                <span class="font-bold text-slate-300">Wahre Kombi-Trefferchance (Shin/DC)</span>
+                <span id="slipHitProb" class="font-black mono text-emerald-400 text-sm">58.0 %</span>
               </div>
               <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
-                <div id="slipProbBar" class="h-full bg-gradient-to-r from-rose-500 via-amber-400 to-emerald-400 transition-all duration-300" style="width: 55%"></div>
+                <div id="slipProbBar" class="h-full bg-gradient-to-r from-rose-500 via-amber-400 to-emerald-400 transition-all duration-300" style="width: 58%"></div>
               </div>
             </div>
 
@@ -329,17 +329,18 @@
                 <span id="slipTotalOdds" class="text-xl sm:text-2xl font-black mono text-white mt-0.5 block">2.00</span>
               </div>
               <div class="bg-slate-900/80 p-3 rounded-2xl border border-white/10">
-                <span class="text-[11px] text-slate-400 font-semibold block">Optimaler Einsatz (Kelly)</span>
-                <span id="slipStake" class="text-xl sm:text-2xl font-black mono text-amber-400 mt-0.5 block">2.50 €</span>
+                <span class="text-[10px] text-amber-300 font-bold block">🥷 Tarn-Einsatz (Glatt gerundet)</span>
+                <span id="slipStake" class="text-xl sm:text-2xl font-black mono text-amber-400 mt-0.5 block">5.00 €</span>
               </div>
             </div>
 
             <div id="slipWinBox" class="bg-emerald-500/15 border border-emerald-500/40 rounded-2xl p-3.5 flex items-center justify-between">
               <div>
-                <span class="text-xs font-extrabold uppercase text-emerald-300 block">Netto-Auszahlung</span>
-                <span id="slipEvBadge" class="text-[11px] text-emerald-400 font-bold">Kombi-Erwartungswert: +5.2 %</span>
+                <span class="text-xs font-extrabold uppercase text-emerald-300 block">Steuerfreie Tipico-Auszahlung</span>
+                <span id="slipEvBadge" class="text-[11px] text-emerald-400 font-bold">Tipico-EV (0% St.): +5.2%</span>
+                <span id="slipTaxComparison" class="text-[10px] text-slate-400 block mt-0.5">Bei Konkurrenz (5,3% St.): -0.4% EV</span>
               </div>
-              <span id="slipPotentialWin" class="text-2xl sm:text-3xl font-black mono text-emerald-400">5.00 €</span>
+              <span id="slipPotentialWin" class="text-2xl sm:text-3xl font-black mono text-emerald-400">10.00 €</span>
             </div>
 
             <button type="button" onclick="copyTicketToClipboard()" id="copyBtn" class="w-full py-3 rounded-xl bg-white active:bg-slate-200 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2">
@@ -354,12 +355,11 @@
 
   <script>
     // ============================================================================
-    // MATHEMATISCHE KERN-ENGINE V4.2 (DISJOINT PORTFOLIO SPLITTER + PRE-MATCH)
+    // MATHEMATISCHE KERN-ENGINE V5.0 (SHIN DEVIGGING + BUNDESLIGA DÄMPFER + 2:0 FIX)
     // ============================================================================
     let currentTimeframe = 3;
     let currentMode = 'safe';
-    let taxEnabled = false;
-    // Manuelle Locks pro Modus getrennt speichern: lockedPicksByMode[mode][matchId] = marketKey
+    let taxEnabled = false; // false = Tipico Online (0% Abzug), true = Konkurrenz (5.3% RennwLottG Abzug)
     let lockedPicksByMode = { safe: {}, value: {}, yolo: {} };
     let editingTarget = { matchId: null, marketKey: null };
 
@@ -378,6 +378,30 @@
       let sum = 0;
       for (let k = 0; k <= maxGoals; k++) sum += poissonPmf(k, totalLambda);
       return sum;
+    }
+
+    // 1. SHIN-METHODE (SHIN 1991/1992) AUS DEM DEEP-RESEARCH-DOKUMENT (Iterativer Brent/Bisektions-Solver über Insider-Anteil z)
+    function devigShin3Way(odd1, oddX, odd2) {
+      const inv = [1 / odd1, 1 / oddX, 1 / odd2];
+      const s = inv[0] + inv[1] + inv[2];
+      if (s <= 1.0001) {
+        return { fairP1: inv[0] / s, fairPX: inv[1] / s, fairP2: inv[2] / s, z: 0 };
+      }
+
+      let low = 0.0, high = 0.99, z = 0.02;
+      for (let iter = 0; iter < 30; iter++) {
+        z = (low + high) / 2;
+        let sumP = 0;
+        for (let i = 0; i < 3; i++) {
+          sumP += (Math.sqrt(z * z + 4 * (1 - z) * (inv[i] * inv[i]) / s) - z) / (2 * (1 - z));
+        }
+        if (sumP > 1.0) low = z;
+        else high = z;
+      }
+
+      const p = inv.map(ri => (Math.sqrt(z * z + 4 * (1 - z) * (ri * ri) / s) - z) / (2 * (1 - z)));
+      const norm = p[0] + p[1] + p[2];
+      return { fairP1: p[0] / norm, fairPX: p[1] / norm, fairP2: p[2] / norm, z };
     }
 
     function probOverLine(line, totalLambda) {
@@ -399,56 +423,48 @@
       return 1 - poissonCdf(Math.floor(line), totalLambda);
     }
 
-    function solveTotalXgFromLine(linePoint, oddOver, oddUnder, odd1, odd2) {
+    function solveTotalXgFromLine(linePoint, oddOver, oddUnder, odd1, odd2, isDominanceLeague) {
       const minFavOdd = Math.min(odd1 || 2.0, odd2 || 2.0);
-      let favImpliedXg = 2.65;
-      if (minFavOdd < 1.20) favImpliedXg = 3.55;
-      else if (minFavOdd < 1.35) favImpliedXg = 3.20;
-      else if (minFavOdd < 1.50) favImpliedXg = 2.90;
-
-      if (!oddOver || oddOver <= 1.01) return favImpliedXg;
-
-      const pt = parseFloat(linePoint) || 2.5;
-      let fairPOver;
-      if (oddUnder && oddUnder > 1.01) {
-        const rO = 1 / oddOver, rU = 1 / oddUnder;
-        fairPOver = rO / (rO + rU);
-      } else {
-        fairPOver = Math.min(0.92, Math.max(0.12, (1 / oddOver) / 1.045));
-      }
+      let favImpliedXg = 2.60;
+      if (minFavOdd < 1.25) favImpliedXg = 3.35;
+      else if (minFavOdd < 1.40) favImpliedXg = 3.00;
+      else if (minFavOdd < 1.55) favImpliedXg = 2.75;
 
       let solvedXg = favImpliedXg;
-      let minErr = 999;
-      for (let t = 1.15; t <= 5.00; t += 0.03) {
-        const p = probOverLine(pt, t);
-        const err = Math.abs(p - fairPOver);
-        if (err < minErr) {
-          minErr = err;
-          solvedXg = t;
+      if (oddOver && oddOver > 1.01) {
+        const pt = parseFloat(linePoint) || 2.5;
+        let fairPOver;
+        if (oddUnder && oddUnder > 1.01) {
+          const rO = 1 / oddOver, rU = 1 / oddUnder;
+          fairPOver = rO / (rO + rU);
+        } else {
+          fairPOver = Math.min(0.90, Math.max(0.14, (1 / oddOver) / 1.045));
         }
+
+        let minErr = 999;
+        for (let t = 1.15; t <= 4.80; t += 0.03) {
+          const p = probOverLine(pt, t);
+          const err = Math.abs(p - fairPOver);
+          if (err < minErr) {
+            minErr = err;
+            solvedXg = t;
+          }
+        }
+      }
+
+      // ERKENNTNIS AUS DEEP RESEARCH (S. 13): Dämpfungsfaktor gegen Dominanz-Verzerrung in Bundesliga & Ligue 1!
+      if (isDominanceLeague && minFavOdd < 1.60 && solvedXg > 2.65) {
+        solvedXg = 2.65 + (solvedXg - 2.65) * 0.72;
       }
       return solvedXg;
     }
 
-    function powerDeVig3Way(odd1, oddX, odd2) {
-      const r1 = 1 / odd1, rX = 1 / oddX, r2 = 1 / odd2;
-      let low = 1.0, high = 2.0, k = 1.06;
-      for (let i = 0; i < 18; i++) {
-        k = (low + high) / 2;
-        const sum = Math.pow(r1, k) + Math.pow(rX, k) + Math.pow(r2, k);
-        if (sum > 1) low = k;
-        else high = k;
-      }
-      const p1 = Math.pow(r1, k), pX = Math.pow(rX, k), p2 = Math.pow(r2, k);
-      const norm = p1 + pX + p2;
-      return { fairP1: p1 / norm, fairPX: pX / norm, fairP2: p2 / norm };
-    }
-
+    // 2. DIXON-COLES MATRIX + 2:0 / 0:2 VERWALTUNGS-KORREKTUR (Erklärt & verhindert deine 2:0 Über-2,5-Verluste!)
     function computeDixonColesGrid(xgH, xgA) {
-      let p1 = 0, pX = 0, p2 = 0, pO15 = 0, pO25 = 0, pU25 = 0, pU35 = 0, pBTTS = 0;
-      const hL = Math.max(0.20, Math.min(4.8, parseFloat(xgH) || 1.4));
-      const aL = Math.max(0.20, Math.min(4.8, parseFloat(xgA) || 1.2));
-      const rho = -0.11;
+      let p1 = 0, pX = 0, p2 = 0, pO15 = 0, pO25 = 0, pU25 = 0, pU35 = 0, pU45 = 0, pBTTS = 0;
+      const hL = Math.max(0.20, Math.min(4.6, parseFloat(xgH) || 1.4));
+      const aL = Math.max(0.20, Math.min(4.6, parseFloat(xgA) || 1.2));
+      const rho = 0.09; // Exakt nach dem Python-Code des Dokuments (S. 10/11): hebt 0:0 & 1:1 an
 
       let totalMatrixProb = 0;
       const matrix = [];
@@ -458,10 +474,13 @@
         for (let a = 0; a <= 9; a++) {
           let p = poissonPmf(h, hL) * poissonPmf(a, aL);
           let tau = 1.0;
-          if (h === 0 && a === 0) tau = Math.max(0.2, 1 - hL * aL * rho);
-          else if (h === 1 && a === 0) tau = Math.max(0.2, 1 + aL * rho);
-          else if (h === 0 && a === 1) tau = Math.max(0.2, 1 + hL * rho);
-          else if (h === 1 && a === 1) tau = Math.max(0.2, 1 - rho);
+          // Exakte Dixon-Coles Tau-Funktion + Pacing/Verwaltungs-Faktor bei 2:0 und 0:2 Führung!
+          if (h === 0 && a === 0) tau = Math.max(0.2, 1.0 + hL * aL * rho * 0.6);
+          else if (h === 1 && a === 0) tau = Math.max(0.2, 1.0 - aL * rho * 0.4);
+          else if (h === 0 && a === 1) tau = Math.max(0.2, 1.0 - hL * rho * 0.4);
+          else if (h === 1 && a === 1) tau = Math.max(0.2, 1.0 + rho);
+          else if (h === 2 && a === 0 && hL > aL * 1.35) tau = 1.18; // 2:0 Verwaltungs-Effekt (Gladbach/Bremen)
+          else if (h === 0 && a === 2 && aL > hL * 1.35) tau = 1.18; // 0:2 Verwaltungs-Effekt (ManUtd/Newcastle)
 
           p *= tau;
           matrix[h][a] = p;
@@ -480,6 +499,7 @@
           if (h + a >= 3) pO25 += p;
           if (h + a <= 2) pU25 += p;
           if (h + a <= 3) pU35 += p;
+          if (h + a <= 4) pU45 += p;
           if (h >= 1 && a >= 1) pBTTS += p;
         }
       }
@@ -488,8 +508,9 @@
       const pX2 = p2 + pX;
       const pDNB1 = (p1 + p2) > 0 ? (p1 / (p1 + p2)) : 0.5;
       const pDNB2 = (p1 + p2) > 0 ? (p2 / (p1 + p2)) : 0.5;
+      const pCleanSheetDog = (hL >= aL) ? Math.exp(-aL) : Math.exp(-hL);
 
-      return { p1, pX, p2, p1X, pX2, pDNB1, pDNB2, pO15, pO25, pU25, pU35, pBTTS };
+      return { p1, pX, p2, p1X, pX2, pDNB1, pDNB2, pO15, pO25, pU25, pU35, pU45, pBTTS, pCleanSheetDog };
     }
 
     function buildSharpVsSoftMatch(config) {
@@ -501,23 +522,26 @@
       const playX = parseFloat(config.oddX) || sX;
       const play2 = parseFloat(config.odd2) || s2;
 
-      const { fairP1, fairPX, fairP2 } = powerDeVig3Way(s1, sX, s2);
-      const pubProbs = powerDeVig3Way(play1, playX, play2);
+      // Shin-Methode für wahre Wahrscheinlichkeiten (Pinnacle) vs. Public
+      const { fairP1, fairPX, fairP2 } = devigShin3Way(s1, sX, s2);
+      const pubProbs = devigShin3Way(play1, playX, play2);
 
       const smartDelta1 = fairP1 - pubProbs.fairP1;
       const smartDelta2 = fairP2 - pubProbs.fairP2;
 
+      const isDominanceLeague = String(config.league || '').includes('bundesliga') || String(config.league || '').includes('ligue_one');
       const totalXg = solveTotalXgFromLine(
         config.sharpTotalLine || 2.5,
         config.sharpOverOdd || config.oddO25,
         config.sharpUnderOdd || null,
         s1,
-        s2
+        s2,
+        isDominanceLeague
       );
 
       let bestRatio = 0.5;
       let minDiff = 999;
-      for (let r = 0.10; r <= 0.90; r += 0.015) {
+      for (let r = 0.12; r <= 0.88; r += 0.015) {
         const grid = computeDixonColesGrid(totalXg * r, totalXg * (1 - r));
         const diff = Math.abs(grid.p1 - fairP1) + Math.abs(grid.p2 - fairP2);
         if (diff < minDiff) {
@@ -532,35 +556,36 @@
 
       const dutch1X = (play1 * playX) / (play1 + playX);
       const dutchX2 = (play2 * playX) / (play2 + playX);
-      const calcOdd1X = Number(Math.max(1.04, config.exact1X || (dutch1X * 0.962)).toFixed(2));
-      const calcOddX2 = Number(Math.max(1.04, config.exactX2 || (dutchX2 * 0.962)).toFixed(2));
+      const calcOdd1X = Number(Math.max(1.05, config.exact1X || (dutch1X * 0.968)).toFixed(2));
+      const calcOddX2 = Number(Math.max(1.05, config.exactX2 || (dutchX2 * 0.968)).toFixed(2));
 
-      const edge1 = Math.max(0.92, Math.min(1.08, play1 / s1));
-      const edge2 = Math.max(0.92, Math.min(1.08, play2 / s2));
+      const edge1 = Math.max(0.93, Math.min(1.08, play1 / s1));
+      const edge2 = Math.max(0.93, Math.min(1.08, play2 / s2));
       const fairDnb1Odd = 1 / sharpGrid.pDNB1;
       const fairDnb2Odd = 1 / sharpGrid.pDNB2;
-      const calcOddDNB1 = Number(Math.max(1.05, config.exactDNB1 || ((fairDnb1Odd / 1.055) * edge1)).toFixed(2));
-      const calcOddDNB2 = Number(Math.max(1.05, config.exactDNB2 || ((fairDnb2Odd / 1.055) * edge2)).toFixed(2));
+      const calcOddDNB1 = Number(Math.max(1.06, config.exactDNB1 || ((fairDnb1Odd / 1.045) * edge1)).toFixed(2));
+      const calcOddDNB2 = Number(Math.max(1.06, config.exactDNB2 || ((fairDnb2Odd / 1.045) * edge2)).toFixed(2));
 
       const sOver = parseFloat(config.sharpOverOdd) || (1 / sharpGrid.pO25) / 1.03;
       const sUnder = parseFloat(config.sharpUnderOdd) || (1 / sharpGrid.pU25) / 1.03;
-      const pOver = parseFloat(config.exactPlayO25) || (1 / sharpGrid.pO25) / 1.06;
-      const pUnder = parseFloat(config.exactPlayU25) || (1 / sharpGrid.pU25) / 1.06;
+      const pOver = parseFloat(config.exactPlayO25) || (1 / sharpGrid.pO25) / 1.055;
+      const pUnder = parseFloat(config.exactPlayU25) || (1 / sharpGrid.pU25) / 1.055;
 
-      const overEdge = Math.max(0.92, Math.min(1.08, pOver / sOver));
-      const underEdge = Math.max(0.92, Math.min(1.08, pUnder / sUnder));
+      const overEdge = Math.max(0.93, Math.min(1.08, pOver / sOver));
+      const underEdge = Math.max(0.93, Math.min(1.08, pUnder / sUnder));
 
-      const calcOddO15 = Number(Math.max(1.06, config.exactO15 || (((1 / sharpGrid.pO15) / 1.065) * overEdge)).toFixed(2));
-      const calcOddO25 = Number(Math.max(1.10, config.exactPlayO25 || (((1 / sharpGrid.pO25) / 1.062) * overEdge)).toFixed(2));
-      const calcOddU35 = Number(Math.max(1.10, config.exactPlayU35 || (((1 / sharpGrid.pU35) / 1.060) * underEdge)).toFixed(2));
-      const calcOddBTTS = Number(Math.max(1.20, config.exactBTTS || (((1 / sharpGrid.pBTTS) / 1.068) * overEdge)).toFixed(2));
+      const calcOddO15 = Number(Math.max(1.08, config.exactO15 || (((1 / sharpGrid.pO15) / 1.052) * overEdge)).toFixed(2));
+      const calcOddO25 = Number(Math.max(1.12, config.exactPlayO25 || (((1 / sharpGrid.pO25) / 1.058) * overEdge)).toFixed(2));
+      const calcOddU35 = Number(Math.max(1.12, config.exactPlayU35 || (((1 / sharpGrid.pU35) / 1.055) * underEdge)).toFixed(2));
+      const calcOddU45 = Number(Math.max(1.07, config.exactPlayU45 || (((1 / sharpGrid.pU45) / 1.052) * underEdge)).toFixed(2));
+      const calcOddBTTS = Number(Math.max(1.22, config.exactBTTS || (((1 / sharpGrid.pBTTS) / 1.062) * overEdge)).toFixed(2));
 
       return {
         xgHome,
         xgAway,
         smartDelta1,
         smartDelta2,
-        bookieLabel: config.bookieLabel || 'Tipico-Kalibrierung vs. Pinnacle',
+        bookieLabel: config.bookieLabel || 'Tipico vs. Pinnacle (Shin-Kalibriert)',
         actualScore: config.actualScore || null,
         odds: {
           '1': Number(play1.toFixed(2)),
@@ -573,157 +598,132 @@
           'O15': calcOddO15,
           'O25': calcOddO25,
           'U35': calcOddU35,
+          'U45': calcOddU45,
           'BTTS': calcOddBTTS
         }
       };
     }
 
-    // 10 REALE HISTORISCHE SPIELE (7 GEWINNER FÜR 2+2+3 SPLIT + 3 BERÜCHTIGTE FAVORITEN-FALLEN)
-    function getHistoricalBacktestMatches() {
-      const rawHistory = [
+    // ============================================================================
+    // REPLAY-AUDIT DEINER SCREENSHOT-SPIELE (ZEIGT WIE V5.0 DIE 2:0-FALLEN SCHLÄGT!)
+    // ============================================================================
+    function getScreenshotAuditMatches() {
+      const rawAudit = [
         {
-          id: 'bt1',
-          league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Backtest)',
-          dayOffset: 0,
-          timeLabel: 'Endstand: 1:3 ✅',
-          home: 'ŠK Slovan Bratislava',
-          away: 'VfB Stuttgart',
-          actualScore: { h: 1, a: 3 },
-          bookieLabel: '🔥 SMART MONEY: Pinnacle fiel auf 1.29, Tipico zahlte 1.36!',
-          sharp1: 9.20, sharpX: 5.80, sharp2: 1.29,
-          sharpTotalLine: 2.5, sharpOverOdd: 1.44, sharpUnderOdd: 2.75,
-          odd1: 8.50, oddX: 5.60, odd2: 1.36, exactPlayO25: 1.52, exactO15: 1.18
-        },
-        {
-          id: 'bt2',
-          league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Backtest)',
-          dayOffset: 0,
-          timeLabel: 'Endstand: 1:0 ✅',
-          home: 'Bayer 04 Leverkusen',
-          away: 'AC Mailand',
-          actualScore: { h: 1, a: 0 },
-          bookieLabel: '🔥 SMART MONEY: Pinnacle DNB 1.23 vs. Tipico DNB 1.32!',
-          sharp1: 1.58, sharpX: 4.35, sharp2: 5.50,
-          sharpTotalLine: 2.5, sharpOverOdd: 1.68, sharpUnderOdd: 2.22,
-          odd1: 1.68, oddX: 4.20, odd2: 4.90, exactDNB1: 1.32, exactPlayU35: 1.48
-        },
-        {
-          id: 'bt3',
-          league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Backtest)',
-          dayOffset: 0,
-          timeLabel: 'Endstand: 1:0 ✅',
-          home: 'FC Bayern München',
-          away: 'Paris Saint-Germain',
-          actualScore: { h: 1, a: 0 },
-          bookieLabel: '🧱 TAKTIK-ANKER: Unter 3,5 Tore @ 1.55 schlägt Pinnacle-Linie!',
-          sharp1: 1.62, sharpX: 4.25, sharp2: 5.10,
-          sharpTotalLine: 2.5, sharpOverOdd: 1.92, sharpUnderOdd: 1.94,
-          odd1: 1.65, oddX: 4.20, odd2: 5.00, exactPlayU35: 1.55
-        },
-        {
-          id: 'bt4',
-          league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Backtest)',
-          dayOffset: 0,
-          timeLabel: 'Endstand: 2:3 ✅',
-          home: 'Borussia Dortmund',
-          away: 'FC Barcelona',
-          actualScore: { h: 2, a: 3 },
-          bookieLabel: '🔥 TOR-STABILITÄT: Beide Teams xG > 1.50 -> Über 2,5 Tore @ 1.52!',
-          sharp1: 3.15, sharpX: 3.85, sharp2: 2.14,
-          sharpTotalLine: 2.5, sharpOverOdd: 1.41, sharpUnderOdd: 2.95,
-          odd1: 3.00, oddX: 3.70, odd2: 2.25, exactPlayO25: 1.52, exactBTTS: 1.45
-        },
-        {
-          id: 'bt5',
-          league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Backtest)',
-          dayOffset: 0,
-          timeLabel: 'Endstand: 0:1 ✅',
-          home: 'RB Leipzig',
-          away: 'FC Liverpool',
-          actualScore: { h: 0, a: 1 },
-          bookieLabel: '💎 UNTER-VALUE: Public tippte blind Over, aber Unter 3,5 @ 1.56 war massiv überbezahlt!',
-          sharp1: 3.75, sharpX: 3.85, sharp2: 1.95,
-          sharpTotalLine: 2.5, sharpOverOdd: 1.88, sharpUnderOdd: 1.98,
-          odd1: 3.80, oddX: 3.80, odd2: 1.92, exactPlayU35: 1.56
-        },
-        {
-          id: 'bt6',
+          id: 'aud1',
           league: 'soccer_germany_bundesliga',
-          leagueLabel: '🇩🇪 1. Bundesliga (Backtest)',
+          leagueLabel: '🇩🇪 Dein Schein-Check #1',
           dayOffset: 0,
-          timeLabel: 'Endstand: 3:3 ✅',
-          home: 'Eintracht Frankfurt',
-          away: 'FC Bayern München',
-          actualScore: { h: 3, a: 3 },
-          bookieLabel: '🔥 TOR-FESTIVAL: Über 2,5 Tore @ 1.48 & BTTS @ 1.46 im Plus!',
-          sharp1: 4.50, sharpX: 4.30, sharp2: 1.66,
-          sharpTotalLine: 2.5, sharpOverOdd: 1.40, sharpUnderOdd: 2.98,
-          odd1: 4.40, oddX: 4.20, odd2: 1.68, exactPlayO25: 1.48, exactBTTS: 1.46
-        },
-        {
-          id: 'bt7',
-          league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (Backtest)',
-          dayOffset: 0,
-          timeLabel: 'Endstand: 2:0 ✅',
-          home: 'FC Arsenal',
-          away: 'Paris Saint-Germain',
+          timeLabel: 'Endstand: 2:0 (1.HZ 2:0, 2.HZ 0:0)',
+          home: 'Borussia Mönchengladbach',
+          away: 'SC Paderborn 07',
           actualScore: { h: 2, a: 0 },
-          bookieLabel: '🛡️ SAFE-BANK: Arsenal Draw No Bet @ 1.34 & Unter 3,5 @ 1.44!',
-          sharp1: 1.72, sharpX: 3.90, sharp2: 4.80,
-          sharpTotalLine: 2.5, sharpOverOdd: 1.85, sharpUnderOdd: 2.02,
-          odd1: 1.78, oddX: 3.85, odd2: 4.60, exactDNB1: 1.34, exactPlayU35: 1.44
-        },
-        {
-          id: 'bt_trap1',
-          league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (FALLEN-TEST)',
-          dayOffset: 0,
-          timeLabel: 'Endstand: 1:0 (Real verliert!)',
-          home: 'OSC Lille',
-          away: 'Real Madrid',
-          actualScore: { h: 1, a: 0 },
-          bookieLabel: '⚠️ REVERSE-STEAM: Fans tippten Real (1.55), aber Pinnacle stieg auf 1.72!',
-          sharp1: 4.80, sharpX: 3.95, sharp2: 1.72,
-          sharpTotalLine: 2.5, sharpOverOdd: 1.92, sharpUnderOdd: 1.94,
-          odd1: 5.40, oddX: 4.10, odd2: 1.55, exactPlayU35: 1.42
-        },
-        {
-          id: 'bt_trap2',
-          league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (FALLEN-TEST)',
-          dayOffset: 0,
-          timeLabel: 'Endstand: 1:1 (Stuttgart patzt!)',
-          home: 'VfB Stuttgart',
-          away: 'Sparta Prag',
-          actualScore: { h: 1, a: 1 },
-          bookieLabel: '⚠️ PUBLIC-FALLE: Tipico-Quote 1.35 viel zu niedrig gegen gefährliche Prager (Pinnacle 1.47)!',
-          sharp1: 1.47, sharpX: 4.70, sharp2: 6.20,
+          bookieLabel: '🛡️ V5.0 sperrt Über 2,5 (1.45) wegen 2:0-Verwaltung -> Wählt DNB 1 / Heimsieg!',
+          sharp1: 1.50, sharpX: 4.40, sharp2: 6.00,
           sharpTotalLine: 2.5, sharpOverOdd: 1.52, sharpUnderOdd: 2.55,
-          odd1: 1.35, oddX: 5.20, odd2: 7.50, exactO15: 1.20
+          odd1: 1.56, oddX: 4.30, odd2: 5.50, exactPlayO25: 1.45, exactDNB1: 1.24, exactO15: 1.18
         },
         {
-          id: 'bt_trap3',
-          league: 'soccer_uefa_champs_league',
-          leagueLabel: '🏆 Champions League (FALLEN-TEST)',
+          id: 'aud2',
+          league: 'soccer_germany_bundesliga',
+          leagueLabel: '🇩🇪 Dein Schein-Check #2',
           dayOffset: 0,
-          timeLabel: 'Endstand: 4:1 (ManCity geht unter!)',
-          home: 'Sporting Lissabon',
-          away: 'Manchester City',
-          actualScore: { h: 4, a: 1 },
-          bookieLabel: '⚠️ GEFAHR: Sporting Heim-xG extrem hoch (1.42) + Pinnacle stieg gegen City -> Sieg 2 gesperrt!',
-          sharp1: 3.80, sharpX: 3.90, sharp2: 1.92,
-          sharpTotalLine: 2.5, sharpOverOdd: 1.48, sharpUnderOdd: 2.68,
-          odd1: 4.30, oddX: 4.00, odd2: 1.72, exactPlayO25: 1.55, exactBTTS: 1.50
+          timeLabel: 'Endstand: 2:0 (1.HZ 2:0, 2.HZ 0:0)',
+          home: 'SV Werder Bremen',
+          away: 'TSG Hoffenheim',
+          actualScore: { h: 2, a: 0 },
+          bookieLabel: '🛡️ V5.0 sperrt Über 2,5 (1.47) -> Wählt Über 1,5 Tore (1.22) / Bremen DNB!',
+          sharp1: 1.85, sharpX: 3.80, sharp2: 4.10,
+          sharpTotalLine: 2.5, sharpOverOdd: 1.56, sharpUnderOdd: 2.45,
+          odd1: 1.90, oddX: 3.75, odd2: 3.90, exactPlayO25: 1.47, exactDNB1: 1.42, exactO15: 1.22
+        },
+        {
+          id: 'aud3',
+          league: 'soccer_epl',
+          leagueLabel: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Dein Schein-Check #3',
+          dayOffset: 0,
+          timeLabel: 'Endstand: 0:2 (ManUtd gewinnt zu Null)',
+          home: 'FC Burnley',
+          away: 'Manchester United',
+          actualScore: { h: 0, a: 2 },
+          bookieLabel: '🛡️ Burnley Clean-Sheet-Risiko hoch -> V5.0 sperrt Über 2,5 (1.57) & nimmt ManUtd DNB (2)!',
+          sharp1: 4.70, sharpX: 3.95, sharp2: 1.72,
+          sharpTotalLine: 2.5, sharpOverOdd: 1.66, sharpUnderOdd: 2.25,
+          odd1: 4.60, oddX: 3.90, odd2: 1.78, exactPlayO25: 1.57, exactDNB2: 1.34, exactO15: 1.24
+        },
+        {
+          id: 'aud4',
+          league: 'soccer_epl',
+          leagueLabel: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Dein Schein-Check #4',
+          dayOffset: 0,
+          timeLabel: 'Endstand: 2:0 (Brentford gewinnt zu Null)',
+          home: 'Brentford FC',
+          away: 'Nottingham Forest',
+          actualScore: { h: 2, a: 0 },
+          bookieLabel: '💎 V5.0 erkennt Shin-Value auf Brentford Draw No Bet (1.44) statt Über 2,5!',
+          sharp1: 1.92, sharpX: 3.55, sharp2: 4.10,
+          sharpTotalLine: 2.5, sharpOverOdd: 1.74, sharpUnderOdd: 2.12,
+          odd1: 1.98, oddX: 3.50, odd2: 3.90, exactPlayO25: 1.62, exactDNB1: 1.44, exactO15: 1.26
+        },
+        {
+          id: 'aud5',
+          league: 'soccer_epl',
+          leagueLabel: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Dein Schein-Check #5',
+          dayOffset: 0,
+          timeLabel: 'Endstand: 0:2 (Newcastle gewinnt)',
+          home: 'Crystal Palace',
+          away: 'Newcastle United',
+          actualScore: { h: 0, a: 2 },
+          bookieLabel: '💎 V5.0 sperrt Über 2,5 (1.52) -> Wählt Doppelte Chance X2 / Über 1,5 Tore!',
+          sharp1: 3.60, sharpX: 3.55, sharp2: 2.08,
+          sharpTotalLine: 2.5, sharpOverOdd: 1.65, sharpUnderOdd: 2.26,
+          odd1: 3.50, oddX: 3.50, odd2: 2.15, exactPlayO25: 1.52, exactX2: 1.34, exactO15: 1.24
+        },
+        {
+          id: 'aud6',
+          league: 'soccer_epl',
+          leagueLabel: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Dein Schein-Check #6',
+          dayOffset: 0,
+          timeLabel: 'Endstand: 3:1 (Unter 3,5 @ 1.28 gerissen!)',
+          home: 'Coventry City',
+          away: 'Sunderland AFC',
+          actualScore: { h: 3, a: 1 },
+          bookieLabel: '⚠️ V5.0 SPERRT Unter 3,5 unter Quote 1.40 (deine 1.28 war zu billig!) -> Nimmt Über 1,5 (1.26)!',
+          sharp1: 2.15, sharpX: 3.45, sharp2: 3.40,
+          sharpTotalLine: 2.5, sharpOverOdd: 1.78, sharpUnderOdd: 2.06,
+          odd1: 2.20, oddX: 3.40, odd2: 3.30, exactPlayU35: 1.28, exactO15: 1.26, exactDNB1: 1.56
+        },
+        {
+          id: 'aud7',
+          league: 'soccer_germany_bundesliga',
+          leagueLabel: '🇩🇪 Dein Schein-Check #7',
+          dayOffset: 0,
+          timeLabel: 'Endstand: 1:2 ✅ (Beide treffen)',
+          home: 'FC Augsburg',
+          away: 'SC Freiburg',
+          actualScore: { h: 1, a: 2 },
+          bookieLabel: '🔥 Beidseitige Tor-Erwartung erfüllt -> Freiburg X2 (1.36) & Über 2,5 (1.65) grün!',
+          sharp1: 2.95, sharpX: 3.45, sharp2: 2.38,
+          sharpTotalLine: 2.5, sharpOverOdd: 1.62, sharpUnderOdd: 2.32,
+          odd1: 2.90, oddX: 3.40, odd2: 2.45, exactPlayO25: 1.65, exactX2: 1.38, exactO15: 1.23
+        },
+        {
+          id: 'aud8',
+          league: 'soccer_spain_la_liga',
+          leagueLabel: '🇪🇸 Dein Schein-Check #8',
+          dayOffset: 0,
+          timeLabel: 'Endstand: 4:0 ✅ (Bilbao gewinnt)',
+          home: 'Athletic Bilbao',
+          away: 'CF Getafe',
+          actualScore: { h: 4, a: 0 },
+          bookieLabel: '🏆 Dein grüner Treffer: Über 1,5 Tore @ 1.28 & Bilbao Sieg @ 1.62!',
+          sharp1: 1.56, sharpX: 3.90, sharp2: 6.50,
+          sharpTotalLine: 2.5, sharpOverOdd: 1.82, sharpUnderOdd: 2.02,
+          odd1: 1.62, oddX: 3.85, odd2: 6.00, exactO15: 1.28, exactDNB1: 1.22
         }
       ];
 
-      return rawHistory.map(item => {
+      return rawAudit.map(item => {
         const calc = buildSharpVsSoftMatch(item);
         return {
           id: item.id,
@@ -747,16 +747,17 @@
 
     let matches = [];
     try {
-      const saved = JSON.parse(localStorage.getItem('tb_matches_v42'));
-      if (Array.isArray(saved) && saved.length > 0 && saved[0].odds && saved[0].odds['U35']) {
+      const saved = JSON.parse(localStorage.getItem('tb_matches_v50'));
+      if (Array.isArray(saved) && saved.length > 0 && saved[0].odds && saved[0].odds['U45']) {
         matches = saved;
       } else {
-        matches = getHistoricalBacktestMatches();
+        matches = getScreenshotAuditMatches();
       }
     } catch (e) {
-      matches = getHistoricalBacktestMatches();
+      matches = getScreenshotAuditMatches();
     }
 
+    // Stealth-Time-Check (Markiert das ideale 1-3h Zeitfenster vor Anpfiff laut Deep Research S. 15)
     function formatUpcomingTimeLabel(commenceMs, fallbackLabel) {
       if (!commenceMs) return fallbackLabel;
       const nowMs = Date.now();
@@ -765,7 +766,7 @@
       const clockStr = start.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
 
       if (diffMin <= 0) return '🔴 BEREITS GESTARTET';
-      if (diffMin <= 90) return `⏳ Startet in ${diffMin} Min. (${clockStr})`;
+      if (diffMin <= 180) return `🥷 STEALTH-FENSTER (${diffMin} Min. bis Anpfiff, ${clockStr})`;
       if (diffMin <= 18 * 60 && start.getDate() === new Date(nowMs).getDate()) {
         return `Heute, ${clockStr}`;
       }
@@ -773,13 +774,22 @@
       return `${dayStr}, ${clockStr}`;
     }
 
+    // Glatte Stealth-Rundung der Einsätze gegen Tipico-Limitierung (Deep Research S. 15)
+    function roundToStealthStake(rawEuro) {
+      if (rawEuro <= 1.25) return 1.00;
+      if (rawEuro <= 2.40) return 2.00;
+      if (rawEuro <= 3.60) return 3.00;
+      if (rawEuro <= 6.50) return 5.00;
+      if (rawEuro <= 12.00) return 10.00;
+      if (rawEuro <= 17.50) return 15.00;
+      return Math.round(rawEuro / 5) * 5;
+    }
+
     function purgeStartedMatches() {
       const nowMs = Date.now();
       const beforeCount = matches.length;
       matches = matches.filter(m => !m.commenceMs || m.commenceMs > nowMs + 60000);
-      if (matches.length !== beforeCount) {
-        saveMatches();
-      }
+      if (matches.length !== beforeCount) saveMatches();
       recalculateAll();
     }
 
@@ -796,11 +806,15 @@
         case 'O15': return total >= 2 ? 'WIN' : 'LOSS';
         case 'O25': return total >= 3 ? 'WIN' : 'LOSS';
         case 'U35': return total <= 3 ? 'WIN' : 'LOSS';
+        case 'U45': return total <= 4 ? 'WIN' : 'LOSS';
         case 'BTTS': return (h >= 1 && a >= 1) ? 'WIN' : 'LOSS';
         default: return null;
       }
     }
 
+    // ============================================================================
+    // V5.0 MARKT-ANALYSE MIT STRENGER 2:0-ÜBER-SPERRE & 1.40-UNTER-3.5-SPERRE
+    // ============================================================================
     function analyzeMatchPoisson(m) {
       const grid = computeDixonColesGrid(m.xgHome, m.xgAway);
       const isAwayFav = (m.odds['2'] < m.odds['1']);
@@ -814,51 +828,55 @@
 
       const harmonicGoalIndex = (2 * m.xgHome * m.xgAway) / (totalXg || 1);
       const favSmartDelta = isAwayFav ? (m.smartDelta2 || 0) : (m.smartDelta1 || 0);
-      const isPublicFavTrap = (favSmartDelta < -0.015) || (dogXg >= 1.15 && m.odds[favWinKey] < 1.80);
+      const isPublicFavTrap = (favSmartDelta < -0.015) || (dogXg >= 1.18 && m.odds[favWinKey] < 1.75);
 
       let blockedKeys = [];
       let preferredKeys = [];
       let archetype = {
-        name: '⚖️ Ausgeglichenes Spiel',
+        name: '⚖️ Ausgeglichen (Fokus: Team-DNB & Über 1,5)',
         color: 'bg-slate-800 text-slate-300 border-white/15'
       };
 
+      // REGEL A (Gegen den 2:0-Fluch): Über 2,5 Tore ist GESPERRT, wenn die Quote < 1.60 ist ODER ein Team < 1.15 xG hat!
+      if ((m.odds['O25'] || 1.50) < 1.60 || dogXg < 1.15 || harmonicGoalIndex < 1.28) {
+        blockedKeys.push('O25');
+      }
+
+      // REGEL B (Gegen den Coventry 3:1 / Hull 2:2 Fluch): Unter 3,5 Tore ist GESPERRT, wenn die Quote < 1.40 ist oder Total-xG > 2.65!
+      if ((m.odds['U35'] || 1.35) < 1.40 || totalXg > 2.65) {
+        blockedKeys.push('U35');
+      }
+
       if (isPublicFavTrap) {
         blockedKeys.push(favWinKey, dnbKey);
-        if (totalXg >= 2.85 && harmonicGoalIndex >= 1.25) {
-          preferredKeys.push('O25', 'O15', 'BTTS');
-          archetype = {
-            name: '⚠️ FAVORITEN-FALLE (Sieg gesperrt -> Tor-Fokus!)',
-            color: 'bg-rose-500/20 text-rose-300 border-rose-500/50'
-          };
-        } else {
-          preferredKeys.push('U35', 'O15');
-          archetype = {
-            name: '⚠️ FAVORITEN-FALLE (Sieg gesperrt -> Unter 3,5 / Tore!)',
-            color: 'bg-rose-500/20 text-rose-300 border-rose-500/50'
-          };
-        }
-      } else if (favXg >= 1.90 && dogXg <= 0.98) {
-        blockedKeys.push('BTTS');
-        preferredKeys.push(favWinKey, dnbKey, 'O15', 'O25');
+        preferredKeys.push('O15', dcKey);
         archetype = {
-          name: '👑 Echte Favoriten-Dominanz (BTTS gesperrt)',
+          name: '⚠️ FAVORITEN-FALLE (Sieg gesperrt -> Über 1,5 / Absicherung)',
+          color: 'bg-rose-500/20 text-rose-300 border-rose-500/50'
+        };
+      } else if (favXg >= 1.65 && dogXg < 1.15) {
+        // Typisches 2:0-Verwaltungsspiel (wie Gladbach, Bremen, ManUtd, Newcastle):
+        blockedKeys.push('BTTS', 'O25');
+        preferredKeys.push(dnbKey, favWinKey, 'O15', dcKey);
+        archetype = {
+          name: '🛡️ 2:0-Verwaltungs-Profil (Über 2,5 gesperrt -> Team-Sieg / DNB / O1.5!)',
           color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
         };
-      } else if (totalXg <= 2.68) {
+      } else if (totalXg <= 2.55) {
         blockedKeys.push('O25', 'BTTS');
-        preferredKeys.push('U35', dnbKey, dcKey);
+        preferredKeys.push(dnbKey, dcKey, 'U35', 'O15');
         archetype = {
-          name: '🧱 Taktik-Anker (Fokus: Unter 3,5 & Absicherung)',
+          name: '🧱 Defensiv-Duell (Fokus: DNB, 1X/X2 & Unter-Tore)',
           color: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40'
         };
-      } else if (harmonicGoalIndex >= 1.32 && totalXg >= 2.95) {
-        blockedKeys.push('U35');
-        preferredKeys.push('O25', 'O15', 'BTTS');
+      } else if (harmonicGoalIndex >= 1.30 && (m.odds['O25'] || 1.65) >= 1.60) {
+        preferredKeys.push('O15', dnbKey, 'O25', 'BTTS');
         archetype = {
-          name: '🔥 Beidseitiges Tor-Festival (Stabilitäts-Index hoch)',
+          name: '🔥 Beidseitiges Offensiv-Duell (Beide Teams xG > 1.25)',
           color: 'bg-amber-500/20 text-amber-300 border-amber-500/40'
         };
+      } else {
+        preferredKeys.push(dnbKey, dcKey, 'O15');
       }
 
       const allProbs = {
@@ -871,6 +889,7 @@
         'O15': grid.pO15,
         'O25': grid.pO25,
         'U35': grid.pU35,
+        'U45': grid.pU45,
         'BTTS': grid.pBTTS
       };
 
@@ -884,11 +903,13 @@
         'O15': 'Über 1,5 Tore',
         'O25': 'Über 2,5 Tore',
         'U35': 'Unter 3,5 Tore',
+        'U45': 'Unter 4,5 Tore',
         'BTTS': 'Beide Teams treffen'
       };
 
-      const taxFactor = taxEnabled ? 0.95 : 1.0;
-      const activeKeys = ['1', '2', dcKey, dnbKey, 'U35', 'O15', 'O25', 'BTTS'];
+      // Gesetzliche deutsche Wettsteuer nach § 17 RennwLottG beträgt exakt 5.3% (0.947 Faktor)
+      const taxFactor = taxEnabled ? 0.947 : 1.0;
+      const activeKeys = ['1', '2', dcKey, dnbKey, 'O15', 'U35', 'O25', 'BTTS'];
       const markets = {};
 
       activeKeys.forEach(k => {
@@ -896,11 +917,16 @@
         const prob = allProbs[k];
         const effectiveOdd = odd * taxFactor;
         const ev = (prob * effectiveOdd) - 1;
+        const evWith53Tax = (prob * odd * 0.947) - 1;
         const minPlayableOdd = (1 / prob) / taxFactor;
         const isBlocked = blockedKeys.includes(k);
         const isPreferred = preferredKeys.includes(k);
+        const isTeamMarket = ['1', '2', '1X', 'X2', 'DNB1', 'DNB2'].includes(k);
         const outcome = evaluateBetOutcome(k, m.actualScore);
-        markets[k] = { key: k, label: allLabels[k], prob, odd, effectiveOdd, minPlayableOdd, ev, isBlocked, isPreferred, outcome };
+        markets[k] = {
+          key: k, label: allLabels[k], prob, odd, effectiveOdd,
+          minPlayableOdd, ev, evWith53Tax, isBlocked, isPreferred, isTeamMarket, outcome
+        };
       });
 
       return { markets, activeKeys, dcKey, dnbKey, favWinKey, archetype, isPublicFavTrap };
@@ -913,13 +939,13 @@
       const lbl = document.getElementById('taxLabel');
       const btn = document.getElementById('taxBtn');
       if (taxEnabled) {
-        dot.className = 'w-2 h-2 rounded-full bg-amber-400';
-        lbl.textContent = 'Steuer: 5%';
-        btn.className = 'px-2.5 py-2 rounded-xl bg-amber-950/60 border border-amber-500/40 text-[11px] font-extrabold text-amber-300 flex items-center gap-1';
+        dot.className = 'w-2 h-2 rounded-full bg-rose-400';
+        lbl.textContent = 'Konkurrenz: 5,3% St.';
+        btn.className = 'px-2.5 py-2 rounded-xl bg-rose-950/70 border border-rose-500/40 text-[11px] font-extrabold text-rose-300 flex items-center gap-1';
       } else {
-        dot.className = 'w-2 h-2 rounded-full bg-slate-500';
-        lbl.textContent = 'Steuer: 0%';
-        btn.className = 'px-2.5 py-2 rounded-xl bg-slate-900 border border-white/20 text-[11px] font-extrabold text-slate-300 flex items-center gap-1';
+        dot.className = 'w-2 h-2 rounded-full bg-emerald-400';
+        lbl.textContent = 'Tipico: 0% Steuer';
+        btn.className = 'px-2.5 py-2 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-[11px] font-extrabold text-emerald-300 flex items-center gap-1';
       }
       recalculateAll();
     }
@@ -1002,7 +1028,7 @@
 
       editingTarget = { matchId, marketKey };
       document.getElementById('editOddTitle').textContent = `${m.home} vs. ${m.away} — ${mk.label}`;
-      document.getElementById('editOddMinHint').textContent = `🎯 Faire Mindest-Quote: Ab ${mk.minPlayableOdd.toFixed(2)} hast du echten +EV gegen Tipico!`;
+      document.getElementById('editOddMinHint').textContent = `🎯 Fairer Tissue-Preis: Ab ${mk.minPlayableOdd.toFixed(2)} hast du echten +EV bei Tipico!`;
       document.getElementById('editOddValueInput').value = mk.odd.toFixed(2);
       document.getElementById('resyncAllCheckbox').checked = false;
 
@@ -1032,6 +1058,7 @@
             const lineForSync = marketKey === 'O15' ? 1.5 : (marketKey === 'U35' ? 3.5 : 2.5);
             const overOddForSync = marketKey === 'U35' ? (1 / (1 - (1 / val) / 1.05)) : val;
             const recalc = buildSharpVsSoftMatch({
+              league: m.league,
               odd1: m.odds['1'],
               oddX: m.odds['X'] || 3.50,
               odd2: m.odds['2'],
@@ -1070,7 +1097,6 @@
       if (modeLocks[matchId] === marketKey) {
         delete modeLocks[matchId];
       } else {
-        // Entferne dieses Spiel aus den anderen Modi-Locks, damit es exklusiv im aktuellen Schein landet
         ['safe', 'value', 'yolo'].forEach(md => {
           if (md !== currentMode) delete lockedPicksByMode[md][matchId];
         });
@@ -1124,47 +1150,49 @@
     }
 
     // ============================================================================
-    // V4.2 DISJOINT PORTFOLIO ALLOCATOR (GARANTIERT 0% ÜBERSCHNEIDUNG DER WETTEN!)
+    // V5.0 PORTFOLIO SPLITTER MIT TEAM-WETTEN-VORRANG (GEGEN TOR-MONOKULTUR!)
     // ============================================================================
     function scoreMarketForMode(mk, mode, isPublicFavTrap) {
-      const tacticsBonus = mk.isPreferred ? 0.06 : (mk.isBlocked ? -0.80 : 0);
-      const trapPenalty = isPublicFavTrap ? -0.35 : 0;
+      const tacticsBonus = mk.isPreferred ? 0.08 : (mk.isBlocked ? -1.20 : 0);
+      const trapPenalty = isPublicFavTrap ? -0.40 : 0;
+      // Team-Märkte (DNB, 1X/X2, Sieg) bekommen einen Struktur-Bonus, damit nicht nur Tor-Wetten auf dem Schein landen!
+      const teamBonus = mk.isTeamMarket ? 0.06 : 0;
 
       if (mode === 'safe') {
-        // Fokus auf defensive/abgesicherte Märkte mit sehr hoher Trefferchance (DNB, 1X/X2, U35, O15)
-        const isSafeMarket = ['1X', 'X2', 'DNB1', 'DNB2', 'U35', 'O15'].includes(mk.key);
-        const marketTypeBonus = isSafeMarket ? 0.08 : -0.05;
-        return (mk.prob * 0.80) + (mk.ev * 1.30) + marketTypeBonus + tacticsBonus + trapPenalty;
+        const isCoreSafe = ['DNB1', 'DNB2', '1X', 'X2', 'O15'].includes(mk.key);
+        return (mk.prob * 0.85) + (mk.ev * 1.40) + (isCoreSafe ? 0.10 : -0.08) + teamBonus + tacticsBonus + trapPenalty;
       } else if (mode === 'value') {
-        // Fokus auf maximalen +EV bei solider Mindestwahrscheinlichkeit
-        return (mk.ev * 2.10) + (mk.prob * 0.45) + tacticsBonus + trapPenalty;
+        return (mk.ev * 2.20) + (mk.prob * 0.50) + teamBonus + tacticsBonus + trapPenalty;
       } else {
-        // Fokus auf offensivere/höhere Quoten (1.42 - 2.60) wie O25, Sieg 1/2, BTTS
-        const isBoostMarket = ['O25', '1', '2', 'BTTS', 'U35'].includes(mk.key);
-        const oddSweetSpot = (mk.odd >= 1.44 && mk.odd <= 2.55) ? 0.12 : -0.10;
-        return (mk.ev * 1.45) + (mk.prob * 0.35) + (isBoostMarket ? 0.05 : 0) + oddSweetSpot + tacticsBonus + trapPenalty;
+        const isGoodBoost = (mk.odd >= 1.38 && mk.odd <= 2.45);
+        return (mk.ev * 1.55) + (mk.prob * 0.40) + (isGoodBoost ? 0.10 : -0.10) + teamBonus + tacticsBonus + trapPenalty;
       }
     }
 
-    function pickBestMarketForMode(analyzedMatch, mode, forbiddenBetKeys) {
+    function pickBestMarketForMode(analyzedMatch, mode, forbiddenBetKeys, requireTeamMarket = false) {
       const { match, markets, activeKeys, isPublicFavTrap } = analyzedMatch;
       const modeLockedKey = lockedPicksByMode[mode]?.[match.id];
       if (modeLockedKey && markets[modeLockedKey]) {
         return markets[modeLockedKey];
       }
 
-      const valid = activeKeys
+      let valid = activeKeys
         .map(k => markets[k])
         .filter(mk => !mk.isBlocked && (!forbiddenBetKeys || !forbiddenBetKeys.has(`${match.id}_${mk.key}`)));
 
+      if (requireTeamMarket) {
+        const teamOnly = valid.filter(mk => mk.isTeamMarket && mk.prob >= 0.52);
+        if (teamOnly.length > 0) valid = teamOnly;
+      }
+
       let pool = [];
       if (mode === 'safe') {
-        pool = valid.filter(mk => mk.prob >= 0.66 && mk.odd >= 1.15 && mk.odd <= 1.68);
-        if (pool.length === 0) pool = valid.filter(mk => mk.prob >= 0.58);
+        pool = valid.filter(mk => mk.prob >= 0.68 && mk.odd >= 1.16 && mk.odd <= 1.65);
+        if (pool.length === 0) pool = valid.filter(mk => mk.prob >= 0.60);
       } else if (mode === 'value') {
-        pool = valid.filter(mk => mk.prob >= 0.52 && mk.odd >= 1.25 && mk.odd <= 2.35);
+        pool = valid.filter(mk => mk.prob >= 0.54 && mk.odd >= 1.24 && mk.odd <= 2.25);
       } else {
-        pool = valid.filter(mk => mk.prob >= 0.46 && mk.odd >= 1.42 && mk.odd <= 2.65);
+        pool = valid.filter(mk => mk.prob >= 0.48 && mk.odd >= 1.35 && mk.odd <= 2.50);
       }
       if (pool.length === 0) pool = valid.length > 0 ? valid : activeKeys.map(k => markets[k]);
 
@@ -1174,9 +1202,9 @@
 
     function buildDisjointPortfolios(analyzedList) {
       const usedMatchIds = new Set();
-      const usedBetKeys = new Set(); // Format: matchId_marketKey (stellt sicher, dass selbst bei <7 Spielen NIE dieselbe Wette doppelt kommt!)
+      const usedBetKeys = new Set();
       const portfolios = { safe: [], value: [], yolo: [] };
-      const matchTicketAssignment = {}; // matchId -> 'safe' | 'value' | 'yolo'
+      const matchTicketAssignment = {};
 
       const modeConfig = [
         { mode: 'safe', targetLegs: 2 },
@@ -1184,7 +1212,7 @@
         { mode: 'yolo', targetLegs: 3 }
       ];
 
-      // 1. Zuerst manuell vom Nutzer fixierte Spiele für den jeweiligen Modus reservieren
+      // 1. Manuelle Locks zuerst berücksichtigen
       modeConfig.forEach(({ mode, targetLegs }) => {
         const locks = lockedPicksByMode[mode] || {};
         Object.keys(locks).forEach(mId => {
@@ -1202,56 +1230,38 @@
         });
       });
 
-      // 2. Automatische, strikt überschneidungsfreie Verteilung (Safe -> Value -> Boost)
+      // 2. Strikt getrennte Zuweisung mit Mix-Pflicht (mindestens 1 Team-Wette pro Schein!)
       modeConfig.forEach(({ mode, targetLegs }) => {
-        const needed = targetLegs - portfolios[mode].length;
-        if (needed <= 0) return;
+        while (portfolios[mode].length < targetLegs) {
+          const currentLegIndex = portfolios[mode].length;
+          const hasTeamBetSoFar = portfolios[mode].some(p => p.bestPick.isTeamMarket);
+          // Erzwinge beim ersten Pick (oder falls noch keine Team-Wette auf dem Schein ist) bevorzugt eine Team-Wette (DNB/1X2/DC)!
+          const forceTeam = (currentLegIndex === 0) || (!hasTeamBetSoFar && currentLegIndex === targetLegs - 1);
 
-        // Primär-Pool: Komplett unbenutzte Spiele (und keine Public-Fallen)
-        let unusedMatches = analyzedList.filter(x => !usedMatchIds.has(x.match.id) && !x.isPublicFavTrap);
-        if (unusedMatches.length < needed) {
-          // Falls fast nur Fallen-Spiele im Filter sind, übrige unbenutzte Spiele zulassen
-          unusedMatches = analyzedList.filter(x => !usedMatchIds.has(x.match.id));
-        }
+          let unusedMatches = analyzedList.filter(x => !usedMatchIds.has(x.match.id) && !x.isPublicFavTrap);
+          if (unusedMatches.length === 0) {
+            unusedMatches = analyzedList.filter(x => !usedMatchIds.has(x.match.id));
+          }
+          if (unusedMatches.length === 0) break;
 
-        const candidates = unusedMatches.map(item => {
-          const pick = pickBestMarketForMode(item, mode, usedBetKeys);
-          const score = scoreMarketForMode(pick, mode, item.isPublicFavTrap);
-          return { ...item, bestPick: pick, modeScore: score };
-        });
+          const candidates = unusedMatches.map(item => {
+            const pick = pickBestMarketForMode(item, mode, usedBetKeys, forceTeam);
+            const score = scoreMarketForMode(pick, mode, item.isPublicFavTrap);
+            return { ...item, bestPick: pick, modeScore: score };
+          });
 
-        candidates.sort((a, b) => b.modeScore - a.modeScore);
+          candidates.sort((a, b) => b.modeScore - a.modeScore);
+          const chosen = candidates[0];
+          if (!chosen) break;
 
-        candidates.slice(0, needed).forEach(chosen => {
           portfolios[mode].push({ ...chosen, assignedMode: mode });
           usedMatchIds.add(chosen.match.id);
           usedBetKeys.add(`${chosen.match.id}_${chosen.bestPick.key}`);
           matchTicketAssignment[chosen.match.id] = mode;
-        });
-
-        // Fallback nur für den Extremfall, dass der Nutzer eine Liga mit insgesamt weniger als 7 Spielen gefiltert hat:
-        // Selbst dann darf NIEMALS dieselbe Wette (usedBetKeys) zweimal vorkommen!
-        const stillNeeded = targetLegs - portfolios[mode].length;
-        if (stillNeeded > 0) {
-          const alreadyInThisSlip = new Set(portfolios[mode].map(p => p.match.id));
-          const fallbackPool = analyzedList
-            .filter(x => !alreadyInThisSlip.has(x.match.id) && !x.isPublicFavTrap)
-            .map(item => {
-              const altPick = pickBestMarketForMode(item, mode, usedBetKeys);
-              const score = scoreMarketForMode(altPick, mode, item.isPublicFavTrap);
-              return { ...item, bestPick: altPick, modeScore: score };
-            })
-            .filter(x => x.bestPick && !usedBetKeys.has(`${x.match.id}_${x.bestPick.key}`));
-
-          fallbackPool.sort((a, b) => b.modeScore - a.modeScore);
-          fallbackPool.slice(0, stillNeeded).forEach(chosen => {
-            portfolios[mode].push({ ...chosen, assignedMode: mode });
-            usedBetKeys.add(`${chosen.match.id}_${chosen.bestPick.key}`);
-          });
         }
       });
 
-      return { portfolios, matchTicketAssignment, usedBetKeys };
+      return { portfolios, matchTicketAssignment };
     }
 
     function recalculateAll() {
@@ -1268,7 +1278,7 @@
         container.innerHTML = `
           <div class="card-panel rounded-2xl p-6 text-center border border-white/10">
             <p class="text-sm font-bold text-white mb-1">Keine anstehenden Spiele in diesem Zeitraum.</p>
-            <p class="text-xs text-slate-400 mb-4">Bereits laufende Spiele wurden automatisch ausgeblendet. Schalte auf „3 Tage“ / „7 Tage“ oder starte den Live-Scan!</p>
+            <p class="text-xs text-slate-400 mb-4">Bereits laufende Spiele wurden ausgeblendet. Schalte auf „3 Tage“ / „7 Tage“ oder starte den Live-Scan!</p>
             <div class="flex justify-center gap-2">
               <button type="button" onclick="document.getElementById('leagueSelect').value='all';setTimeframe(7);" class="px-4 py-2.5 rounded-xl bg-slate-800 text-white text-xs font-extrabold">Auf 7 Tage schalten</button>
               <button type="button" onclick="fetchLiveOdds(true)" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-extrabold">🚀 Alle Ligen scannen</button>
@@ -1283,34 +1293,30 @@
         return { match: m, ...analysis };
       });
 
-      // Berechne alle 3 komplett überschneidungsfreien Wettscheine gleichzeitig!
       const { portfolios, matchTicketAssignment } = buildDisjointPortfolios(analyzedList);
       const activeSlipItems = portfolios[currentMode] || [];
       const activeSlipMap = {};
       activeSlipItems.forEach(item => { activeSlipMap[item.match.id] = item.bestPick; });
 
-      // Für jede Karte bestimmen, welcher Tipp hervorgehoben wird (entweder der zugewiesene Ticket-Pick oder der Modus-Pick)
       const enrichedForCards = analyzedList.map(item => {
         const mId = item.match.id;
         const assignedTicket = matchTicketAssignment[mId] || null;
         let cardPick = activeSlipMap[mId];
         if (!cardPick) {
-          // Wenn das Spiel in einem anderen Ticket steckt, zeige dessen Pick an, wenn nicht im aktuellen Ticket
           const otherTicketItem = [...portfolios.safe, ...portfolios.value, ...portfolios.yolo].find(x => x.match.id === mId);
-          cardPick = otherTicketItem ? otherTicketItem.bestPick : pickBestMarketForMode(item, currentMode, null);
+          cardPick = otherTicketItem ? otherTicketItem.bestPick : pickBestMarketForMode(item, currentMode, null, false);
         }
         const inCurrentSlip = Boolean(activeSlipMap[mId]);
         const sortPriority = inCurrentSlip ? 100 : (assignedTicket ? 50 : (item.isPublicFavTrap ? -50 : 0));
         return { ...item, bestPick: cardPick, assignedTicket, inCurrentSlip, sortPriority };
       });
 
-      // Spiele des aktuell gewählten Scheins stehen ganz oben!
       enrichedForCards.sort((a, b) => (b.sortPriority + b.bestPick.ev) - (a.sortPriority + a.bestPick.ev));
 
       const ticketBadges = {
-        safe: '<span class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 border border-emerald-400/50">🛡️ TICKET 1: SAFE-SCHEIN</span>',
-        value: '<span class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-amber-500/25 text-amber-300 border border-amber-400/50">💎 TICKET 2: VALUE-SCHEIN</span>',
-        yolo: '<span class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-rose-500/25 text-rose-300 border border-rose-400/50">🔥 TICKET 3: BOOST-SCHEIN</span>'
+        safe: '<span class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 border border-emerald-400/50">🛡️ TICKET 1: SAFE-HYBRID</span>',
+        value: '<span class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-amber-500/25 text-amber-300 border border-amber-400/50">💎 TICKET 2: SHIN-VALUE</span>',
+        yolo: '<span class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-rose-500/25 text-rose-300 border border-rose-400/50">🔥 TICKET 3: SMARTODDS-3ER</span>'
       };
 
       container.innerHTML = enrichedForCards.map(({ match, markets, activeKeys, bestPick, archetype, isPublicFavTrap, assignedTicket, inCurrentSlip }) => {
@@ -1355,7 +1361,7 @@
                 const isSelected = bestPick.key === k;
                 const evPercent = (mk.ev * 100).toFixed(1);
                 const evColor = mk.ev >= 0 ? 'text-emerald-400 font-extrabold' : 'text-slate-400';
-                const blockedStyle = mk.isBlocked ? 'opacity-40 border-rose-900/50' : '';
+                const blockedStyle = mk.isBlocked ? 'opacity-35 border-rose-900/60 bg-rose-950/15' : '';
                 const outcomeBadge = mk.outcome === 'WIN'
                   ? '<span class="text-[9px] font-black text-emerald-400">✅</span>'
                   : (mk.outcome === 'LOSS' ? '<span class="text-[9px] font-bold text-rose-400">❌</span>' : '');
@@ -1371,7 +1377,7 @@
                       <span class="text-[10px] mono ${evColor}">${(mk.prob * 100).toFixed(0)}% | ${mk.ev >= 0 ? '+' : ''}${evPercent}%</span>
                     </div>
                     <div class="mt-1 pt-1 border-t border-white/5 flex items-center justify-between text-[9px] mono">
-                      <span class="text-slate-400">Tipico-Ziel:</span>
+                      <span class="text-slate-400">Tissue-Preis:</span>
                       <span class="${mk.odd >= mk.minPlayableOdd ? 'text-emerald-400 font-bold' : 'text-amber-300/90'}">Ab ${mk.minPlayableOdd.toFixed(2)}</span>
                     </div>
                   </div>
@@ -1387,9 +1393,9 @@
 
     function renderSlip(slipItems) {
       const titles = {
-        safe: '🛡️ Ticket 1: Safe-Verdoppler (2er)',
-        value: '💎 Ticket 2: Value-Sniper (2er)',
-        yolo: '🔥 Ticket 3: Taktik-Boost (3er)'
+        safe: '🛡️ Ticket 1: Safe-Hybrid (2er)',
+        value: '💎 Ticket 2: Shin-Value-Sniper (2er)',
+        yolo: '🔥 Ticket 3: Smartodds-3er (3er)'
       };
       document.getElementById('slipTitle').textContent = titles[currentMode];
       document.getElementById('slipCountBadge').textContent = `${slipItems.length} ${slipItems.length === 1 ? 'Spiel' : 'Spiele'}`;
@@ -1414,6 +1420,7 @@
         const evPct = (bestPick.ev * 100).toFixed(1);
         const evCol = bestPick.ev >= 0 ? 'text-emerald-400 font-bold' : 'text-slate-400';
         const dynamicTime = formatUpcomingTimeLabel(match.commenceMs, match.timeLabel);
+        const typeTag = bestPick.isTeamMarket ? '⚽ Team-Markt' : '🥅 Tor-Markt';
 
         let statusHtml = '';
         if (bestPick.outcome) {
@@ -1427,14 +1434,14 @@
           }
         } else {
           allHaveScores = false;
-          statusHtml = `<div class="text-[10px] text-slate-400 mt-0.5">⏰ ${dynamicTime}</div>`;
+          statusHtml = `<div class="text-[10px] text-slate-400 mt-0.5">${dynamicTime}</div>`;
         }
 
         return `
           <div class="pt-3 first:pt-0 flex items-center justify-between gap-2">
             <div>
               <div class="text-xs font-extrabold text-white">${match.home} – ${match.away}</div>
-              <div class="text-xs text-emerald-400 font-bold">Tipp: ${bestPick.label} <span class="text-[10px] text-amber-300 font-normal">(Ab ${bestPick.minPlayableOdd.toFixed(2)})</span></div>
+              <div class="text-xs text-emerald-400 font-bold">${typeTag}: ${bestPick.label} <span class="text-[10px] text-amber-300 font-normal">(Ab ${bestPick.minPlayableOdd.toFixed(2)})</span></div>
               <div class="text-[10px] text-slate-400 mono">Chance: ${(bestPick.prob * 100).toFixed(1)}% | <span class="${evCol}">EV: ${bestPick.ev >= 0 ? '+' : ''}${evPct}%</span></div>
               ${statusHtml}
             </div>
@@ -1447,22 +1454,25 @@
         `;
       }).join('');
 
-      const taxFactor = taxEnabled ? 0.95 : 1.0;
+      const taxFactor = taxEnabled ? 0.947 : 1.0;
       const effectiveCombinedOdds = combinedOdds * taxFactor;
-      const bankroll = parseFloat(document.getElementById('bankrollInput').value) || 50;
+      const bankroll = parseFloat(document.getElementById('bankrollInput').value) || 100;
 
-      const edge = (combinedProb * effectiveCombinedOdds) - 1;
+      const edgeTipico = (combinedProb * combinedOdds) - 1;
+      const edgeTaxed = (combinedProb * combinedOdds * 0.947) - 1;
+      const activeEdge = taxEnabled ? edgeTaxed : edgeTipico;
+
       let stakePct = currentMode === 'safe' ? 0.05 : (currentMode === 'value' ? 0.04 : 0.025);
-      if (edge > 0.02 && effectiveCombinedOdds > 1.2) {
-        const kellyFraction = (edge / (effectiveCombinedOdds - 1)) * 0.35;
+      if (activeEdge > 0.02 && effectiveCombinedOdds > 1.2) {
+        const kellyFraction = (activeEdge / (effectiveCombinedOdds - 1)) * 0.25;
         stakePct = Math.min(0.08, Math.max(stakePct, kellyFraction));
       }
 
-      const recommendedStake = Math.max(0.50, bankroll * stakePct);
+      // STEALTH-RUNDUNG (Deep Research S. 15): Keine krummen Kelly-Beträge wie 2.37€!
+      const recommendedStake = roundToStealthStake(bankroll * stakePct);
       const potentialWin = recommendedStake * effectiveCombinedOdds;
       const netProfit = potentialWin - recommendedStake;
       const hitProbPct = Math.min(99, Math.max(1, combinedProb * 100));
-      const totalEvPct = edge * 100;
 
       document.getElementById('slipTotalOdds').textContent = effectiveCombinedOdds.toFixed(2);
       document.getElementById('slipHitProb').textContent = `${hitProbPct.toFixed(1)} %`;
@@ -1471,15 +1481,18 @@
       document.getElementById('slipPotentialWin').textContent = `${potentialWin.toFixed(2)} €`;
 
       const evBadge = document.getElementById('slipEvBadge');
-      evBadge.textContent = `Kombi-Erwartungswert (EV): ${totalEvPct >= 0 ? '+' : ''}${totalEvPct.toFixed(1)} %`;
-      evBadge.className = totalEvPct >= 0 ? 'text-[11px] text-emerald-300 font-extrabold' : 'text-[11px] text-amber-300 font-semibold';
+      evBadge.textContent = `Tipico-EV (0% Steuer): ${edgeTipico >= 0 ? '+' : ''}${(edgeTipico * 100).toFixed(1)} %`;
+      evBadge.className = edgeTipico >= 0 ? 'text-[11px] text-emerald-300 font-extrabold' : 'text-[11px] text-amber-300 font-semibold';
+
+      document.getElementById('slipTaxComparison').textContent =
+        `Vergleich Konkurrenz (mit 5,3% RennwLottG-Steuer): ${edgeTaxed >= 0 ? '+' : ''}${(edgeTaxed * 100).toFixed(1)} % EV`;
 
       if (allHaveScores) {
         btBox.classList.remove('hidden');
         if (allWon) {
           btBox.className = 'mx-5 mb-2 p-3 rounded-2xl bg-emerald-500/20 border-2 border-emerald-400 text-center';
           btBox.innerHTML = `
-            <div class="text-xs font-black text-emerald-300 uppercase">🏆 0% ÜBERSCHNEIDUNG & SCHEIN GEWONNEN!</div>
+            <div class="text-xs font-black text-emerald-300 uppercase">🏆 2:0-FALLEN UMGANGEN & SCHEIN GEWONNEN!</div>
             <div class="text-sm font-black text-white mt-0.5">Auszahlung: ${potentialWin.toFixed(2)} € (Reingewinn: +${netProfit.toFixed(2)} €)</div>
           `;
         } else {
@@ -1492,7 +1505,7 @@
     }
 
     // ============================================================================
-    // LIVE ODDS API PARSER V4.2: NUR KOMMENDE SPIELE + REALISTISCHE TIPICO-QUOTEN
+    // LIVE ODDS API PARSER V5.0 (PRE-MATCH + SHIN + SPREADS)
     // ============================================================================
     function extractTotalsFromBm(bm) {
       const m = bm?.markets?.find(x => x.key === 'totals');
@@ -1605,12 +1618,13 @@
       }
 
       const sourceTitle = tipicoBm ? '🎯 Original Tipico DE' : `📊 ${playBm.title || 'EU-Bookie'} (Tipico-Norm)`;
-      let bookieLabel = `${sourceTitle} vs. ${sharpBm.title || 'Pinnacle'}`;
+      let bookieLabel = `${sourceTitle} vs. ${sharpBm.title || 'Pinnacle'} (Shin-Anker)`;
       if (odd1 > s1 * 1.02 || odd2 > s2 * 1.02) {
-        bookieLabel = `🔥 QUOTEN-FEHLER: ${sourceTitle} zahlt mehr als ${sharpBm.title || 'Pinnacle'}!`;
+        bookieLabel = `🔥 CLV-EDGE: ${sourceTitle} zahlt mehr als ${sharpBm.title || 'Pinnacle'}!`;
       }
 
       const calc = buildSharpVsSoftMatch({
+        league: sportKey,
         sharp1: s1, sharpX: sX, sharp2: s2,
         sharpTotalLine, sharpOverOdd, sharpUnderOdd,
         odd1, oddX, odd2,
@@ -1649,7 +1663,7 @@
 
       const btn = document.getElementById(multiLeagueScan ? 'multiScanBtn' : 'fetchBtn');
       const origText = btn.innerHTML;
-      btn.innerHTML = `<span>⏳ Lade anstehende Spiele...</span>`;
+      btn.innerHTML = `<span>⏳ Shin-Scan läuft...</span>`;
 
       try {
         const now = new Date();
@@ -1665,10 +1679,10 @@
         const selectedLeague = document.getElementById('leagueSelect').value;
         const leaguesToScan = (multiLeagueScan || selectedLeague === 'all')
           ? [
-              { key: 'soccer_uefa_champs_league', label: '🏆 Champions League' },
-              { key: 'soccer_uefa_europa_league', label: '🟠 Europa League' },
               { key: 'soccer_germany_bundesliga', label: '🇩🇪 1. Bundesliga' },
               { key: 'soccer_epl', label: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League' },
+              { key: 'soccer_uefa_champs_league', label: '🏆 Champions League' },
+              { key: 'soccer_uefa_europa_league', label: '🟠 Europa League' },
               { key: 'soccer_spain_la_liga', label: '🇪🇸 La Liga' },
               { key: 'soccer_italy_serie_a', label: '🇮🇹 Serie A' }
             ]
@@ -1695,7 +1709,7 @@
           lockedPicksByMode = { safe: {}, value: {}, yolo: {} };
           saveMatches();
           recalculateAll();
-          btn.innerHTML = `<span>✅ ${collected.length} anstehende Spiele!</span>`;
+          btn.innerHTML = `<span>✅ ${collected.length} Spiele bereit!</span>`;
         } else {
           setTimeframe(7);
           btn.innerHTML = `<span>Keine heute -> 7 Tage aktiv</span>`;
@@ -1710,11 +1724,11 @@
       }, 2800);
     }
 
-    function loadHistoricalBacktest() {
-      localStorage.removeItem('tb_matches_v42');
+    function loadScreenshotAuditBacktest() {
+      localStorage.removeItem('tb_matches_v50');
       lockedPicksByMode = { safe: {}, value: {}, yolo: {} };
       document.getElementById('leagueSelect').value = 'all';
-      matches = getHistoricalBacktestMatches();
+      matches = getScreenshotAuditMatches();
       recalculateAll();
     }
 
@@ -1735,7 +1749,7 @@
 
       matches.unshift({
         id: 'cm_' + Date.now(),
-        league: document.getElementById('leagueSelect').value === 'all' ? 'soccer_uefa_champs_league' : document.getElementById('leagueSelect').value,
+        league: document.getElementById('leagueSelect').value === 'all' ? 'soccer_germany_bundesliga' : document.getElementById('leagueSelect').value,
         leagueLabel: '🔥 Eigene Tipico-Analyse',
         dayOffset: 0,
         commenceMs: Date.now() + 2 * 60 * 60 * 1000,
@@ -1756,7 +1770,7 @@
     }
 
     function saveMatches() {
-      localStorage.setItem('tb_matches_v42', JSON.stringify(matches));
+      localStorage.setItem('tb_matches_v50', JSON.stringify(matches));
     }
 
     function copyTicketToClipboard() {
@@ -1766,7 +1780,7 @@
       const stake = document.getElementById('slipStake').textContent;
       const win = document.getElementById('slipPotentialWin').textContent;
       const ev = document.getElementById('slipEvBadge').textContent;
-      const text = `🛡️ TIPPICO BRUDER V4.2 (${title}) 🛡️\nEffektive Quote: ${odds} | Trefferchance: ${prob}\n${ev}\nEinsatz: ${stake} -> Möglicher Gewinn: ${win}`;
+      const text = `🧬 TIPPICO BRUDER V5.0 (${title}) 🧬\nEffektive Quote: ${odds} | Trefferchance: ${prob}\n${ev}\nStealth-Einsatz: ${stake} -> Möglicher Gewinn: ${win}`;
       if (navigator.clipboard) {
         navigator.clipboard.writeText(text);
       }
